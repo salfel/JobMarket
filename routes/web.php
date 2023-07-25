@@ -16,13 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function() {
-    return view('home', [
-        'user' => Auth::user()
-    ]);
+Route::get('/', function () {
+	return view('home', [
+		'user' => Auth::user()
+	]);
 })->name('home');
 
-Route::prefix('auth')->group(function() {
-    Route::get('login', Login::class);
-    Route::get('register', Register::class);
+Route::prefix('auth')->group(function () {
+	Route::get('login', Login::class);
+	Route::get('register', Register::class);
 });
