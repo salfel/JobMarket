@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Auth;
 
-use App\Livewire\Forms\LoginForm;
+use App\Livewire\Forms\Auth\LoginForm;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -11,9 +11,7 @@ use Livewire\Component;
 
 class Login extends Component
 {
-
     public LoginForm $form;
-    public User $user;
 
     public function authenticate() {
         $this->form->validate();

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Forms;
+namespace App\Livewire\Forms\Auth;
 
 use Livewire\Attributes\Rule;
 use Livewire\Form;

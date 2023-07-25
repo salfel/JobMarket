@@ -5,6 +5,4 @@
     <x-input wire:model="form.password" name="Password"/>
 
     <button type="submit" class="block px-3 py-1.5 bg-amber-400 hover:bg-amber-500 transition-colors rounded-md">Login</button>
-
-    {{ $user?->name }}
 </form>
