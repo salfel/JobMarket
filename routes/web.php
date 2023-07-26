@@ -4,6 +4,7 @@ use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Register;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +18,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-	return view('home', [
-		'user' => Auth::user()
-	]);
+	return view('home');
 })->name('home');
 
 Route::prefix('auth')->group(function () {
-	Route::get('login', Login::class);
-	Route::get('register', Register::class);
+	Route::get('login', Login::class)->name('login');
+	Route::get('register', Register::class)->name('register');
+	Route::post('logout', function() {
+		Auth::logout();
+		Session::regenerate();
+
+		return to_route('login');
+	})->name('logout');
 });
