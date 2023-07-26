@@ -19,7 +19,7 @@ class Register extends Component
 		$user = User::create($validated);
 
 		Auth::login($user);
-		return to_route('home');
+		return $this->redirectRoute('home');
 	}
 
 	#[Layout('components.layouts.auth')]

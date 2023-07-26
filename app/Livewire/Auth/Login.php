@@ -19,7 +19,7 @@ class Login extends Component
 		if (Auth::attempt($this->form->all())) {
 			Session::regenerate();
 
-			return to_route('home');
+			return $this->redirectRoute('home');
 		} else {
 			$this->addError('form.email', 'Wrong email or password');
 			$this->form->password = '';
