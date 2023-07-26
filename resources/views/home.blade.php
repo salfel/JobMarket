@@ -1,5 +1,7 @@
 <x-layouts.app>
 	<div>
-		{{ $user?->email }}
+		@foreach($user->companies as $company)
+			<div>{{ $company->name }}</div>
+		@endforeach
 	</div>
 </x-layouts.app>

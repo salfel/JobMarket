@@ -9,7 +9,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="/companies" wire:navigate  class="font-medium hover:text-sky-500 hover:underline">
+				<a href="/companies" wire:navigate class="font-medium hover:text-sky-500 hover:underline">
 					Companies
 				</a>
 			</li>
