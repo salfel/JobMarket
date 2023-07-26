@@ -18,16 +18,16 @@ use Illuminate\Support\Facades\Session;
 */
 
 Route::get('/', function () {
-	return view('home');
+    return view('home');
 })->name('home');
 
 Route::prefix('auth')->group(function () {
-	Route::get('login', Login::class)->name('login');
-	Route::get('register', Register::class)->name('register');
-	Route::post('logout', function() {
-		Auth::logout();
-		Session::regenerate();
+    Route::get('login', Login::class)->name('login');
+    Route::get('register', Register::class)->name('register');
+    Route::post('logout', function () {
+        Auth::logout();
+        Session::regenerate();
 
-		return to_route('login');
-	})->name('logout');
+        return to_route('login');
+    })->name('logout');
 });
