@@ -4,7 +4,11 @@ export default {
 		'./resources/**/*.blade.php',
 	],
 	theme: {
-		extend: {},
+		extend: {
+			fontFamily: {
+				'rubik': "'Rubik', sans-serif"
+			}
+		},
 	},
 }
 
