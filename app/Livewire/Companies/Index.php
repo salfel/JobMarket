@@ -3,19 +3,21 @@
 namespace App\Livewire\Companies;
 
 use App\Models\Company;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
-    public $companies;
+	use WithPagination;
 
-    public function mount()
-    {
-        $this->companies = Company::all();
-    }
+	public string $search = '';
 
     public function render()
     {
-        return view('livewire.companies.index');
+		$companies = Company::search($this->search);
+        return view('livewire.companies.index', [
+			'companies' => $companies->paginate(10)
+        ]);
     }
 }

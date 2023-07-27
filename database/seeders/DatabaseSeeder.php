@@ -13,9 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
-            'email' => 'felix.salcher@gmail.com',
-            'password' => bcrypt('Flix-gaming.cr1'),
-        ]);
+	    $this->call(UserSeeder::class);
+		$this->call(CompanySeeder::class);
     }
 }

@@ -11,12 +11,12 @@ return new class extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->uuid('id');
             $table->foreignUuid('owner_id')->constrained('users')->onDelete('cascade');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->text('description');
             $table->string('logo');
             $table->string('website');
             $table->integer('phone');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('region');
             $table->string('location');
             $table->timestamps();

@@ -4,7 +4,7 @@
 	<x-input-field wire:model="form.email" name="Email"/>
 	<x-input-field wire:model="form.password" type="password" name="Password"/>
 
-	<x-elements.button>
+	<button type="submit" class="{{ config('styles.button') }}">
 		Login
-	</x-elements.button>
+	</button>
 </form>

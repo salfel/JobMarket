@@ -9,13 +9,13 @@
 				</a>
 			</li>
 			<li>
-				<a href="/companies" wire:navigate class="font-medium hover:text-sky-500 hover:underline">
-					Companies
+				<a href="/jobs" wire:navigate class="font-medium hover:text-sky-500 hover:underline">
+					Jobs
 				</a>
 			</li>
 			<li>
-				<a href="/jobs" wire:navigate class="font-medium hover:text-sky-500 hover:underline">
-					Jobs
+				<a href="/companies" wire:navigate class="font-medium hover:text-sky-500 hover:underline">
+					Companies
 				</a>
 			</li>
 		</ul>

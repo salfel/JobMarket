@@ -12,17 +12,17 @@ class Login extends Component
 {
     public LoginForm $form;
 
-    public function authenticate()
+    public function authenticate(): void
     {
         $this->form->validate();
 
         if (Auth::attempt($this->form->all())) {
             Session::regenerate();
 
-            return $this->redirectRoute('home');
+            $this->redirectRoute('home');
         } else {
             $this->addError('form.email', 'Wrong email or password');
-            $this->form->password = '';
+			$this->form->password = '';
         }
     }
 

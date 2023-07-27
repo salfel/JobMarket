@@ -13,14 +13,14 @@ class CompanyFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
+            'name' => $this->faker->unique()->company(),
             'description' => $this->faker->text(),
             'logo' => $this->faker->imageUrl(),
             'website' => $this->faker->word(),
             'phone' => $this->faker->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail(),
-            'region' => $this->faker->word(),
-            'location' => $this->faker->word(),
+            'region' => $this->faker->country(),
+            'location' => $this->faker->city(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

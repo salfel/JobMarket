@@ -6,7 +6,7 @@
 	<x-input-field type="password" wire:model="form.password" name="Password"/>
 	<x-input-field type="password" wire:model="form.password_confirmation" name="Confirm Password"/>
 
-	<x-elements.button type="submit">
+	<button type="submit" class="{{ config('styles.button') }}">
 		Register
-	</x-elements.button>
+	</button>
 </form>

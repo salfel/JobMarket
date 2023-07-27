@@ -2,6 +2,7 @@
 export default {
 	content: [
 		'./resources/**/*.blade.php',
+		'./config/styles.php'
 	],
 	theme: {
 		extend: {
