@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\LogoutController;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Register;
-use Illuminate\Support\Facades\Auth;
+use App\Livewire\Companies\Index;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,10 +24,9 @@ Route::get('/', function () {
 Route::prefix('auth')->group(function () {
     Route::get('login', Login::class)->name('login');
     Route::get('register', Register::class)->name('register');
-    Route::post('logout', function () {
-        Auth::logout();
-        Session::regenerate();
+    Route::post('logout', LogoutController::class)->name('logout');
+});
 
-        return to_route('login');
-    })->name('logout');
+Route::prefix('companies')->group(function () {
+    Route::get('/', Index::class)->name('companies.index');
 });
