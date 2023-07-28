@@ -16,7 +16,7 @@ class CompanyFactory extends Factory
             'name' => $this->faker->unique()->company(),
             'description' => $this->faker->text(),
             'logo' => $this->faker->imageUrl(),
-            'website' => $this->faker->word(),
+            'website' => $this->faker->url(),
             'phone' => $this->faker->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail(),
             'region' => $this->faker->country(),

@@ -30,5 +30,5 @@ Route::prefix('auth')->group(function () {
 
 Route::prefix('companies')->group(function () {
     Route::get('/', Index::class)->name('companies.index');
-    Route::get('/{id}', Show::class)->name('companies.show');
+    Route::get('/{company}', Show::class)->name('companies.show');
 });
