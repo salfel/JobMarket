@@ -4,6 +4,7 @@ use App\Http\Controllers\LogoutController;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Register;
 use App\Livewire\Companies\Index;
+use App\Livewire\Companies\Show;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,4 +30,5 @@ Route::prefix('auth')->group(function () {
 
 Route::prefix('companies')->group(function () {
     Route::get('/', Index::class)->name('companies.index');
+    Route::get('/{id}', Show::class)->name('companies.show');
 });

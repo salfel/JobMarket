@@ -12,7 +12,7 @@
 </head>
 	<body>
 		<x-nav.header />
-		<main>
+		<main class="pt-3">
 			{{ $slot }}
 		</main>
 	</body>

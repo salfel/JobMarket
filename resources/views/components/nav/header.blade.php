@@ -1,4 +1,4 @@
-<header class="flex items-center justify-around h-16 bg-white">
+<header class="sticky top-0 left-0 flex items-center justify-around h-16 bg-white">
 	<a href="{{ route('home') }}"
 	   class="text-2xl font-bold text-sky-500 tracking-tighter">JobMarket</a>
 

@@ -5,3 +5,12 @@
 html,body {
 	@apply font-rubik
 }
+
+::-webkit-scrollbar {
+	@apply bg-gray-100 w-2
+}
+
+
+::-webkit-scrollbar-thumb {
+	@apply bg-sky-500 rounded-full;
+}
