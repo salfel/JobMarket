@@ -1,5 +1,6 @@
 <header class="flex items-center justify-around h-16 bg-white">
-	<span class="text-2xl font-bold text-sky-500 tracking-tighter pointer-events-none">JobMarket</span>
+	<a href="{{ route('home') }}"
+	   class="text-2xl font-bold text-sky-500 tracking-tighter">JobMarket</a>
 
 	<nav>
 		<ul class="flex items-center justify-around gap-10">

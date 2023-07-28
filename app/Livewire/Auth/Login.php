@@ -22,7 +22,6 @@ class Login extends Component
             $this->redirectRoute('home');
         } else {
             $this->addError('form.email', 'Wrong email or password');
-			$this->form->password = '';
         }
     }
 
