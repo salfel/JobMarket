@@ -1,12 +1,5 @@
 <?php
 
-use App\Http\Controllers\LogoutController;
-use App\Livewire\Auth\Login;
-use App\Livewire\Auth\Register;
-use App\Livewire\Companies\Index;
-use App\Livewire\Companies\Show;
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,17 +11,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+//Route::get('/', function () {
+//    return view('home');
+//})->name('home');
+//
+//Route::prefix('auth')->group(function () {
+//    Route::get('login', Login::class)->name('login');
+//    Route::get('register', Register::class)->name('register');
+//    Route::post('logout', LogoutController::class)->name('logout');
+//});
+//
+//Route::prefix('companies')->group(function () {
+//    Route::get('/', Index::class)->name('companies.index');
+//    Route::get('/{company}', Show::class)->name('companies.show');
+//});
 
-Route::prefix('auth')->group(function () {
-    Route::get('login', Login::class)->name('login');
-    Route::get('register', Register::class)->name('register');
-    Route::post('logout', LogoutController::class)->name('logout');
-});
+use App\Http\Controllers\LogoutController;
 
-Route::prefix('companies')->group(function () {
-    Route::get('/', Index::class)->name('companies.index');
-    Route::get('/{company}', Show::class)->name('companies.show');
-});
+Route::post('auth/logout', LogoutController::class)->name('auth.logout');

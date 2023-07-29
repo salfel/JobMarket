@@ -34,7 +34,7 @@
 	<div
 		x-ref="panel"
 		x-show="open"
-		x-on:click.outside="close($refs.button)"
+		@click.outside="close($refs.button)"
 		x-transition.origin.top
 		:id="$id('dropdown-button')"
 		class="absolute right-0 mt-2 w-40 rounded-md bg-white shadow-md"
@@ -46,7 +46,7 @@
 			Settings
 		</a>
 		<hr class="divide-y my-1">
-		<form action="{{ route('logout') }}" method="POST">
+		<form action="{{ route('auth.logout') }}" method="POST">
 			@csrf
 			<button type="submit"
 					class="flex items-center gap-2 w-full px-3 py-1.5 text-sm text-red-500 hover:bg-gray-100">

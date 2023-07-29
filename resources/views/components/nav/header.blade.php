@@ -1,5 +1,5 @@
 <header class="sticky top-0 left-0 flex items-center justify-around h-16 bg-white">
-	<a href="{{ route('home') }}"
+	<a href="/"
 	   class="text-2xl font-bold text-sky-500 tracking-tighter">JobMarket</a>
 
 	<nav>
@@ -24,17 +24,16 @@
 	@auth('web')
 		<x-modal>
 			<x-slot:button>
-				@if($user->avatar)
-					<img
-						src="{{ $user->avatar }}"
-						alt="{{ $user->name }}"
-						class="h-7 w-7 rounded-full"
-					/>
-				@endif
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+					 class="text-gray-600 w-6 h-6">
+					<path fill-rule="evenodd"
+						  d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+						  clip-rule="evenodd"/>
+				</svg>
 			</x-slot:button>
 		</x-modal>
 	@else
-		<a href="{{ route('login') }}" wire:navigate class="font-medium hover:text-sky-500 hover:underline">
+		<a href="/auth/login" wire:navigate class="font-medium hover:text-sky-500 hover:underline">
 			Login
 		</a>
 	@endauth

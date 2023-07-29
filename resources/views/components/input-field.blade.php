@@ -2,8 +2,8 @@
 
 <label>
 	<span class="block mb-1 text-sm text-medium">{{ $name }}</span>
-	<input {{ $attributes->merge(['class' => config('styles.input')]) }} />
+	<x-elements.input {{ $attributes }} />
 	@error( $attributes['wire:model'] )
-		<span class="block text-red-500 text-sm mt-1">{{ $message }}</span>
+	<span class="block text-red-500 text-sm mt-1">{{ $message }}</span>
 	@enderror
 </label>
