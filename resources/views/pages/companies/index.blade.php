@@ -21,6 +21,7 @@ $companies = computed(function () {
 				<x-company-preview :company="$company"/>
 			@endforeach
 		</div>
+		<x-pagination :paginator="$this->companies"/>
 	</div>
 	@endvolt
 </x-app-layout>

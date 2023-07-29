@@ -31,10 +31,11 @@ $store = function () {
 	<form wire:submit="store" class="w-96 flex flex-col gap-5">
 		<h1 class="text-xl font-semibold text-center">Register</h1>
 
-		<x-input-field wire:model="name" name="Name"/>
-		<x-input-field wire:model="email" name="Email"/>
-		<x-input-field type="password" wire:model="password" name="Password"/>
-		<x-input-field type="password" wire:model="password_confirmation" name="Confirm Password"/>
+		<x-elements.input-field wire:model="name" name="Name" class="w-full"/>
+		<x-elements.input-field wire:model="email" name="Email" class="w-full"/>
+		<x-elements.input-field type="password" wire:model="password" name="Password" class="w-full"/>
+		<x-elements.input-field type="password" wire:model="password_confirmation" name="Confirm Password"
+								class="w-full"/>
 
 		<x-elements.button type="submit">
 			Submit
