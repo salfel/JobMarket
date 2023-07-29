@@ -10,32 +10,13 @@ class CompanyPolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(User $user): bool
-    {
-
-    }
-
-    public function view(User $user, Company $company): bool
-    {
-    }
-
-    public function create(User $user): bool
-    {
-    }
-
     public function update(User $user, Company $company): bool
     {
+        return $user->id === $company->owner_id;
     }
 
     public function delete(User $user, Company $company): bool
     {
-    }
-
-    public function restore(User $user, Company $company): bool
-    {
-    }
-
-    public function forceDelete(User $user, Company $company): bool
-    {
+        return $user->id === $company->owner_id;
     }
 }

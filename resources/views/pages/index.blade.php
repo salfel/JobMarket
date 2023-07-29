@@ -10,4 +10,5 @@ $increment = function () {
 ?>
 
 <x-app-layout>
+	home
 </x-app-layout>

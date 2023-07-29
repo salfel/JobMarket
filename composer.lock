@@ -1983,16 +1983,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v3.0.0-beta.4",
+            "version": "v3.0.0-beta.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "b57896e44397d7c5b1c42db64dba4c8382959357"
+                "reference": "249b52628d4285f2b1073eeedc3312b265774705"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/b57896e44397d7c5b1c42db64dba4c8382959357",
-                "reference": "b57896e44397d7c5b1c42db64dba4c8382959357",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/249b52628d4285f2b1073eeedc3312b265774705",
+                "reference": "249b52628d4285f2b1073eeedc3312b265774705",
                 "shasum": ""
             },
             "require": {
@@ -2044,7 +2044,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v3.0.0-beta.4"
+                "source": "https://github.com/livewire/livewire/tree/v3.0.0-beta.5"
             },
             "funding": [
                 {
@@ -2052,7 +2052,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-07-24T21:57:39+00:00"
+            "time": "2023-07-28T21:10:07+00:00"
         },
         {
             "name": "livewire/volt",
@@ -8154,16 +8154,16 @@
         },
         {
             "name": "spatie/flare-client-php",
-            "version": "1.4.1",
+            "version": "1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/flare-client-php.git",
-                "reference": "943894c6a6b00501365ac0b91ae0dce56f2226fa"
+                "reference": "5f2c6a7a0d2c1d90c12559dc7828fd942911a544"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/flare-client-php/zipball/943894c6a6b00501365ac0b91ae0dce56f2226fa",
-                "reference": "943894c6a6b00501365ac0b91ae0dce56f2226fa",
+                "url": "https://api.github.com/repos/spatie/flare-client-php/zipball/5f2c6a7a0d2c1d90c12559dc7828fd942911a544",
+                "reference": "5f2c6a7a0d2c1d90c12559dc7828fd942911a544",
                 "shasum": ""
             },
             "require": {
@@ -8212,7 +8212,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/flare-client-php/issues",
-                "source": "https://github.com/spatie/flare-client-php/tree/1.4.1"
+                "source": "https://github.com/spatie/flare-client-php/tree/1.4.2"
             },
             "funding": [
                 {
@@ -8220,7 +8220,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-07-06T09:29:49+00:00"
+            "time": "2023-07-28T08:07:24+00:00"
         },
         {
             "name": "spatie/ignition",

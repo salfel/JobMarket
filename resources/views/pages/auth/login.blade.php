@@ -33,7 +33,7 @@ $authenticate = function () {
 		<x-elements.input-field wire:model="password" type="password" name="Password" class="w-full"/>
 
 		<x-elements.button type="submit">
-			Logie
+			Login
 		</x-elements.button>
 
 		<p class="text-sm mt-3 text-center text-gray-800">Not logged in yet?

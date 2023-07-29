@@ -14,8 +14,8 @@
 </head>
 <body>
 <x-nav.header/>
-<main {{ $attributes->merge(['class' => 'pt-3 max-w-4xl flex justify-center']) }}>
-	<div>
+<main {{ $attributes->merge(['class' => 'pt-3 flex justify-center']) }}>
+	<div class="max-w-4xl ">
 		{{ $slot }}
 	</div>
 </main>
