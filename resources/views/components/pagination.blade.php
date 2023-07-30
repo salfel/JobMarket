@@ -13,11 +13,7 @@
 			wire:navigate
 			@class(['rounded-l-md', 'pointer-events-none bg-gray-100 select-none' => $paginator->currentPage() === 1])
 		>
-			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-				 stroke="currentColor" class="w-6">
-				<path stroke-linecap="round" stroke-linejoin="round"
-					  d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5"/>
-			</svg>
+			<x-icon.chevron-left/>
 		</x-elements.simple-button>
 
 		@foreach($items as $item => $link)
@@ -39,11 +35,7 @@
 			wire:navigate
 			@class(['rounded-r-md', 'pointer-events-none bg-gray-100 select-none' => $paginator->currentPage() === $paginator->lastPage()])
 		>
-			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-				 stroke="currentColor" class="w-6">
-				<path stroke-linecap="round" stroke-linejoin="round"
-					  d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5"/>
-			</svg>
+			<x-icon.chevron-right/>
 		</x-elements.simple-button>
 	</div>
 @endif

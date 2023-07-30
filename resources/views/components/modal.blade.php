@@ -9,11 +9,9 @@
 			this.$refs.button.focus();
 			this.open = true
 		},
-		close(focusAfter) {
-			if (! this.open) return;
-
-			this.open = false;
-			focusAfter && focusAfter.focus()
+		close() {
+			console.log(this.open)
+			this.open = false
 		}
 	}"
 	x-on:keydown.escape.prevent.stop="close($refs.button)"
@@ -28,14 +26,13 @@
 		:aria-controls="$id('dropwown-button')"
 		type="button"
 	>
-		{{ $button }}
+		<x-icon.user-circle-solid/>
 	</button>
 
 	<div
 		x-ref="panel"
 		x-show="open"
-		@click.outside="close($refs.button)"
-		x-transition.origin.top
+		@click.outside="close()"
 		:id="$id('dropdown-button')"
 		class="absolute right-0 mt-2 w-40 rounded-md bg-white shadow-md"
 	>

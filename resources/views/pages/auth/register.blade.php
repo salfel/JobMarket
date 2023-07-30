@@ -26,7 +26,7 @@ $store = function () {
 
 ?>
 
-<x-auth-layout>
+<x-layouts.auth>
 	@volt
 	<form wire:submit="store" class="w-96 flex flex-col gap-5">
 		<h1 class="text-xl font-semibold text-center">Register</h1>
@@ -49,5 +49,5 @@ $store = function () {
 		</p>
 	</form>
 	@endvolt
-</x-auth-layout>
+</x-layouts.auth>
 

@@ -1,7 +1,7 @@
 @props(['company'])
 @php /** @var App\Models\Company $company */ @endphp
 
-<x-app-layout :title="$company->name">
+<x-layouts.app :title="$company->name">
 	<div class="flex gap-5">
 		<img src="{{ $company->logo }}" alt="{{ $company->name }}" class="h-24 w-24"/>
 		<div>
@@ -36,4 +36,4 @@
 	</div>
 
 	<span class="inline-block text-lg font-medium mt-16">There are no listings available</span>
-</x-app-layout>
+</x-layouts.app>

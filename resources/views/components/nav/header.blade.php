@@ -22,11 +22,7 @@
 		</ul>
 	</nav>
 	@auth('web')
-		<x-modal>
-			<x-slot:button>
-				<x-icon.user-circle-solid class="text-gray-700"/>
-			</x-slot:button>
-		</x-modal>
+		<x-modal/>
 	@else
 		<a href="/auth/login" wire:navigate class="font-medium hover:text-sky-500 hover:underline">
 			Login
