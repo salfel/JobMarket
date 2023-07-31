@@ -37,7 +37,7 @@ $store = function () {
 		<x-elements.input-field type="password" wire:model="password_confirmation" name="Confirm Password"
 								class="w-full"/>
 
-		<x-elements.button type="submit">
+		<x-elements.button type="submit" class="w-full">
 			Submit
 		</x-elements.button>
 

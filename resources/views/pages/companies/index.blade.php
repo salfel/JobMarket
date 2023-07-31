@@ -18,7 +18,7 @@ $companies = computed(function () {
 		<x-elements.input wire:model.live="search" placeholder="Search companies..." class="w-80"/>
 		<div class="space-y-5 mt-3">
 			@foreach($this->companies as $company)
-				<x-company-preview :company="$company"/>
+				<x-company-preview :wire:key="$company->name" :company="$company"/>
 			@endforeach
 		</div>
 		<x-pagination :paginator="$this->companies"/>

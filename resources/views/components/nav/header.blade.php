@@ -22,7 +22,7 @@
 		</ul>
 	</nav>
 	@auth('web')
-		<x-modal/>
+		<livewire:dropdown/>
 	@else
 		<a href="/auth/login" wire:navigate class="font-medium hover:text-sky-500 hover:underline">
 			Login

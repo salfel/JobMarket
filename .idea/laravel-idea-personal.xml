@@ -4,6 +4,8 @@
     <option name="generationStringOptionValues">
       <map>
         <entry key="createController.singleAction" value="1" />
+        <entry key="internal.bladeComponentMergeClassAttribute" value="" />
+        <entry key="internal.bladeComponentOpenFile" value="1" />
         <entry key="newModelSimpleOption:addFillable" value="1" />
         <entry key="postGeneration:databaseClassFactory" value="1" />
         <entry key="postGeneration:policy" value="1" />
