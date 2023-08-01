@@ -1,6 +1,5 @@
 @props(['name', 'input'])
 
-
 <label class="w-auto">
 	<span class="block mb-1 text-sm text-medium">{{ $name }}</span>
 	@if(isset($input))

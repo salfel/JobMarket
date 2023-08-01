@@ -16,12 +16,6 @@ rules([
 	]);
 
 $store = function () {
-	$validated = $this->validate();
-
-	$user = User::create($validated);
-	Auth::login($user);
-
-	return $this->redirect('/');
 }
 
 ?>

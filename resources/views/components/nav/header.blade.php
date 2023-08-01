@@ -5,7 +5,8 @@
 	<nav>
 		<ul class="flex items-center justify-around gap-10">
 			<li>
-				<a href="/companies/create" wire:navigate class="font-medium hover:text-sky-500 hover:underline">
+				<a href="{{ route('companies.create') }}" wire:navigate
+				   class="font-medium hover:text-sky-500 hover:underline">
 					Start Listing
 				</a>
 			</li>
@@ -22,7 +23,7 @@
 		</ul>
 	</nav>
 	@auth('web')
-		<livewire:dropdown/>
+		<x-dropdown/>
 	@else
 		<a href="/auth/login" wire:navigate class="font-medium hover:text-sky-500 hover:underline">
 			Login
