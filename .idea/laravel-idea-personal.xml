@@ -3,7 +3,8 @@
   <component name="LaravelIdeaPersonalSettings">
     <option name="generationStringOptionValues">
       <map>
-        <entry key="createController.singleAction" value="1" />
+        <entry key="createConsoleCommand.register" value="1" />
+        <entry key="createFormRequest.generateAuthorize" value="" />
         <entry key="internal.bladeComponentMergeClassAttribute" value="" />
         <entry key="internal.bladeComponentOpenFile" value="1" />
         <entry key="newModelSimpleOption:addFillable" value="1" />

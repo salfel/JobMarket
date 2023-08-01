@@ -9,8 +9,8 @@ class LogoutController extends Controller
 {
     public function __invoke()
     {
-        Auth::logout();
-        Session::regenerate();
+        auth::logout();
+        session::regenerate();
 
         return redirect('auth/login');
     }
