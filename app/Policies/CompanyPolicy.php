@@ -10,6 +10,11 @@ class CompanyPolicy
 {
     use HandlesAuthorization;
 
+    public function create(User $user): bool
+    {
+        return boolval($user);
+    }
+
     public function update(User $user, Company $company): bool
     {
         return $user->id === $company->owner_id;

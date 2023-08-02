@@ -27,7 +27,7 @@
 					<p>{{ company.description }}</p>
 				</div>
 				<div class="flex items-center gap-24 mt-3">
-					<a href="{{ company.website }}" class="font-medium hover:text-sky-500">
+					<a :href="company.website" class="font-medium hover:text-sky-500">
 						<GlobeAltIcon class="w-5 h-5 inline-block mr-2" />
 
 						<span class="align-middle">Website</span>

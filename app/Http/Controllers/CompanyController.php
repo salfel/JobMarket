@@ -17,10 +17,16 @@ class CompanyController extends Controller
 
     public function create()
     {
+        if (! \Gate::allows('create', Company::class)) {
+            abort(403, 'You are not logged in!');
+        }
+
+        return Inertia::render('companies/Create');
     }
 
     public function store(Request $request)
     {
+
     }
 
     public function show(Company $company)

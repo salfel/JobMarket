@@ -48,19 +48,19 @@
 					</div>
 					<div class="px-1 py-1">
 						<MenuItem v-slot="{ active }">
-							<form
-								:action="route('auth.logout')"
+							<Link
+								as="button"
+								method="POST"
+								:href="route('auth.logout')"
 								:class="[
 									active
 										? 'bg-sky-500 text-white'
 										: 'text-red-500',
-									'w-full rounded-md text-sm',
+									'block w-full rounded-md text-sm p-2 text-left',
 								]"
 							>
-								<button class="w-full flex text-left px-2 py-2">
-									Logout
-								</button>
-							</form>
+								Logout
+							</Link>
 						</MenuItem>
 					</div>
 				</MenuItems>

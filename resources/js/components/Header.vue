@@ -17,7 +17,7 @@ import route from "ziggy-js";
 				<li>
 					<Link
 						class="font-medium hover:text-sky-500 hover:underline"
-						href=""
+						:href="route('companies.create')"
 					>
 						Start Listing
 					</Link>
@@ -41,14 +41,13 @@ import route from "ziggy-js";
 			</ul>
 		</nav>
 		<Dropdown v-if="usePage().props.user" />
-
-		<a
+		<Link
 			v-else
 			class="font-medium hover:text-sky-500 hover:underline"
 			href="/auth/login"
 		>
 			Login
-		</a>
+		</Link>
 	</header>
 </template>
 

@@ -1,5 +1,0 @@
-@props(['job'])
-
-<div>
-
-</div>
