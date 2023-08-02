@@ -32,8 +32,8 @@ class Company extends Model
         return $this->belongsTo(User::class);
     }
 
-	public function searchableAs(): string
-	{
-		return 'companies_index';
-	}
+    public function searchableAs(): string
+    {
+        return 'companies_index';
+    }
 }

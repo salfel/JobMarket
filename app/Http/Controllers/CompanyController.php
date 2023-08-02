@@ -8,9 +8,14 @@ use Inertia\Inertia;
 
 class CompanyController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return Inertia::render('companies/Index');
+        $companies = Company::search($request->get('q'))->paginate(10)->withQueryString();
+        //        dd($request->get('q'));
+
+        return Inertia::render('companies/Index', [
+            'companies' => fn () => Company::search($request->get('q'))->paginate(10)->withQueryString(),
+        ]);
     }
 
     public function create()

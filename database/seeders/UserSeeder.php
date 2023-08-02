@@ -9,9 +9,9 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-	    User::factory()->create([
-		    'email' => 'felix.salcher.06@gmail.com',
-		    'password' => bcrypt('Flix-gaming.cr1'),
-	    ]);
+        User::factory()->create([
+            'email' => 'felix.salcher.06@gmail.com',
+            'password' => bcrypt('Flix-gaming.cr1'),
+        ]);
     }
 }
