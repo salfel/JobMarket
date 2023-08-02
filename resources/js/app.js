@@ -1,5 +1,7 @@
 import { createApp, h } from "vue";
 import { createInertiaApp } from "@inertiajs/vue3";
+import PrimeVue from "primevue/config";
+import Button from "primevue/button";
 
 createInertiaApp({
 	resolve: (name) => {
@@ -9,6 +11,8 @@ createInertiaApp({
 	setup({ el, App, props, plugin }) {
 		createApp({ render: () => h(App, props) })
 			.use(plugin)
+			.use(PrimeVue)
+			.component('Button', Button)
 			.mount(el);
 	},
 });

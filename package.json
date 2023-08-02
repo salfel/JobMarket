@@ -25,6 +25,7 @@
 		"@vitejs/plugin-vue": "^4.2.3",
 		"alpinejs": "^3.12.3",
 		"lodash": "^4.17.21",
+		"primevue": "^3.31.0",
 		"vue": "^3.3.4",
 		"ziggy-js": "^1.6.0"
 	}

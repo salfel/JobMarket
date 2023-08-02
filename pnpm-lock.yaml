@@ -26,6 +26,9 @@ dependencies:
   lodash:
     specifier: ^4.17.21
     version: 4.17.21
+  primevue:
+    specifier: ^3.31.0
+    version: 3.31.0(vue@3.3.4)
   vue:
     specifier: ^3.3.4
     version: 3.3.4
@@ -1075,6 +1078,14 @@ packages:
       nanoid: 3.3.6
       picocolors: 1.0.0
       source-map-js: 1.0.2
+
+  /primevue@3.31.0(vue@3.3.4):
+    resolution: {integrity: sha512-4+NHYJ7enPDK/tcZAmVxWfSD3ciGK0NDtw68maFnBnWsXrWnQeiQfD6pOqyguesuIu4fOfO5JHZTGsqHuAL81A==}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      vue: 3.3.4
+    dev: false
 
   /process@0.11.10:
     resolution: {integrity: sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A==}

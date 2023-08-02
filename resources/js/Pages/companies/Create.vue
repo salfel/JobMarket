@@ -1,9 +1,15 @@
 <script lang="ts" setup>
 import AppLayout from "@/layouts/AppLayout.vue";
-import FormInput from "@/components/FormInput.vue";
+import InputText from "primevue/inputtext";
+import Textarea from "primevue/textarea";
+import AutoComplete, {AutoCompleteCompleteEvent} from "primevue/autocomplete";
 import {useForm} from "@inertiajs/vue3";
+import {regions as _regions} from "@/utils/constants";
+import {ref} from "vue";
 
 defineOptions({layout: AppLayout})
+
+const regions = ref(_regions);
 
 let form = useForm({
     name: '',
@@ -15,26 +21,57 @@ let form = useForm({
     location: '',
     logo: null
 })
+
+function searchRegion(event: AutoCompleteCompleteEvent) {
+	regions.value = _regions.filter((region) => region.toLowerCase().includes(event.query.toLowerCase()))
+}
+
 </script>
 
 <template>
     <form class="flex flex-col gap-3">
-        <FormInput name="Name" :error="form.errors.name" v-model:value="form.name"/>
-        <FormInput name="Description" :error="form.errors.description">
-            <textarea v-model="form.description"
-                      class="w-full px-3 py-1.5 ring-1 ring-gray-300 focus:ring-2 focus:ring-cyan-500 focus:outline-none rounded-md"></textarea>
-        </FormInput>
+		<label class="flex flex-col gap-2">
+			<span>Name</span>
+			<InputText v-model="form.name"/>
+			<small v-if="form.errors.name" class="text-red-500">{{ form.errors.name }}</small>
+		</label>
 
-        <div class="flex flex-wrap gap-5">
-            <FormInput container="flex-1 basis-56" name="Website" :error="form.errors.website"
-                       v-model:value="form.website"/>
-            <FormInput container="flex-1 basis-56" name="Email" :error="form.errors.email" v-model:value="form.email"/>
-            <FormInput container="flex-1 basis-56" name="Phone" :error="form.errors.phone" v-model:value="form.phone"/>
-        </div>
-        <div class="flex flex-wrap gap-5">
+		<div class="flex flex-col gap-2">
+			<label for="name">Description</label>
+			<Textarea v-model="form.description" rows="3"/>
+			<small v-if="form.errors.description" class="text-red-500">{{ form.errors.description }}</small>
+		</div>
 
-            <FormInput container="flex-1 basis-56" name="Location" :error="form.errors.location"
-                       v-model:value="form.location"/>
+        <div class="flex flex-wrap gap-5 [&_label]:flex-1 [&_label]:basis-56">
+			<label class="flex flex-col gap-2">
+				<span>Website</span>
+				<InputText v-model="form.website"/>
+				<small v-if="form.errors.website" class="text-red-500">{{ form.errors.website }}</small>
+			</label>
+			<label class="flex flex-col gap-2">
+				<span>Email</span>
+				<InputText v-model="form.email"/>
+				<small v-if="form.errors.email" class="text-red-500">{{ form.errors.email }}</small>
+			</label>
+			<label class="flex flex-col gap-2">
+				<span>Phone</span>
+				<InputText v-model="form.phone"/>
+				<small v-if="form.errors.phone" class="text-red-500">{{ form.errors.phone }}</small>
+			</label>
+		</div>
+        <div class="flex flex-wrap gap-5 [&_label]:flex-1 [&_label]:basis-56">
+			<label class="flex flex-col gap-2">
+				<span>Region</span>
+				<AutoComplete v-model="form.region" inputClass="w-full" :suggestions="regions" @complete="searchRegion"/>
+				<small v-if="form.errors.region" class="text-red-500">{{ form.errors.region }}</small>
+			</label>
+			<label class="flex flex-col gap-2">
+				<span>Location</span>
+				<InputText v-model="form.location"/>
+				<small v-if="form.errors.location" class="text-red-500">{{ form.errors.location }}</small>
+			</label>
         </div>
+
+		<Button label="Create Company"  />
     </form>
 </template>

@@ -32,8 +32,8 @@ const searchCompanies = _.throttle(() => {
 			type="search"
 			@input="searchCompanies"
 		/>
-		<div v-for="company in companies.data" class="space-y-5 mt-3">
-			<CompanyPreview :company="company" />
+		<div class="space-y-5 mt-3">
+			<CompanyPreview v-for="company in companies.data" :key="company.id" :company="company" />
 		</div>
 		<Paginator :paginator="companies" />
 	</div>
