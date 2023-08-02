@@ -1,31 +1,24 @@
-<script lang="ts">
-import AppLayout from "@/layouts/AppLayout.vue";
-
-export default {
-	layout: AppLayout,
-};
-</script>
-
 <script lang="ts" setup>
-import type { Company, Pagination } from "@/utils/types";
 import CompanyPreview from "@/components/CompanyPreview.vue";
-import { ref } from "vue";
-import { router, Link } from "@inertiajs/vue3";
+import Paginator from "@/components/Paginator.vue";
+import { router } from "@inertiajs/vue3";
+import {ref} from "vue";
 import _ from "lodash";
+import type { Company, Pagination } from "@/utils/types";
+import AppLayout from "@/layouts/AppLayout.vue";
 
 defineProps<{
 	companies: Pagination<Company>;
 }>();
 
+defineOptions({ layout: AppLayout })
+
 const search = ref(new URL(location.href).searchParams.get("q"));
-const searchInput = ref<HTMLInputElement>(null);
 
 const searchCompanies = _.throttle(() => {
 	router.visit("/companies/?q=" + search.value, {
 		only: ["companies"],
-		onSuccess() {
-			setTimeout(() => console.log(searchInput.value), 1000);
-		},
+		preserveState: true
 	});
 }, 100);
 </script>
@@ -35,13 +28,13 @@ const searchCompanies = _.throttle(() => {
 		<input
 			ref="searchInput"
 			v-model="search"
-			class="w-full px-3 py-1.5 ring-1 ring-gray-300 focus:ring-2 focus:ring-cyan-500 focus:outline-none rounded-md"
+			class="w-60 px-3 py-1.5 ring-1 ring-gray-300 focus:ring-2 focus:ring-cyan-500 focus:outline-none rounded-md"
 			type="search"
 			@input="searchCompanies"
 		/>
 		<div v-for="company in companies.data" class="space-y-5 mt-3">
 			<CompanyPreview :company="company" />
 		</div>
-		<!--		<x-pagination :paginator="$companies"/>-->
+		<Paginator :paginator="companies" />
 	</div>
 </template>

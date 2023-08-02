@@ -5,7 +5,7 @@ import Header from "@/components/Header.vue";
 <template>
 	<Header />
 	<main class="pt-3 flex justify-center">
-		<div class="max-w-4xl w-full">
+		<div class="px-3 max-w-4xl w-full">
 			<slot />
 		</div>
 	</main>

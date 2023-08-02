@@ -10,11 +10,8 @@ class CompanyController extends Controller
 {
     public function index(Request $request)
     {
-        $companies = Company::search($request->get('q'))->paginate(10)->withQueryString();
-        //        dd($request->get('q'));
-
         return Inertia::render('companies/Index', [
-            'companies' => fn () => Company::search($request->get('q'))->paginate(10)->withQueryString(),
+            'companies' => fn () => Company::search($request->get('q'))->paginate(10)->withQueryString()->appends(['query' => null]),
         ]);
     }
 
@@ -28,6 +25,9 @@ class CompanyController extends Controller
 
     public function show(Company $company)
     {
+        return Inertia::render('companies/Show', [
+            'company' => $company,
+        ]);
     }
 
     public function edit(Company $company)

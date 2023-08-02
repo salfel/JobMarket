@@ -1,9 +1,7 @@
-<script lang="ts">
+<script lang="ts" setup>
 import AppLayout from "@/layouts/AppLayout.vue";
 
-export default {
-	layout: AppLayout,
-};
+defineOptions({ layout: AppLayout })
 </script>
 
 <template>home</template>

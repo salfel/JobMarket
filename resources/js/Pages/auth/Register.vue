@@ -1,13 +1,8 @@
-<script>
+<script lang="ts" setup>
 import AuthLayout from "@/layouts/AuthLayout.vue";
-
-export default {
-	layout: AuthLayout,
-};
-</script>
-
-<script setup>
 import { useForm } from "@inertiajs/vue3";
+
+defineOptions({ layout: AuthLayout })
 
 let form = useForm({
 	name: null,
