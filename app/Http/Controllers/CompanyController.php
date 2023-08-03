@@ -13,31 +13,14 @@ class CompanyController extends Controller
 {
     public function index(Request $request)
     {
+        $companies = Company::search($request->get('q'))->take(500)->get()->toArray();
+        $companies = array_filter($companies,
+            fn ($company) => str_contains(strtolower($company['region']), strtolower($request->get('region') ?: '')));
+        $companies = paginateArray($companies);
+
         return Inertia::render('companies/Index', [
-            'companies' => fn (
-            ) => Company::search($request->get('q'))->when('region', $request->get('region'))->paginate(10)->withQueryString()->appends(['query' => null]),
+            'companies' => fn () => $companies,
         ]);
-    }
-
-    public function create()
-    {
-        Gate::authorize('create-company', Company::class);
-
-        return Inertia::render('companies/Create');
-    }
-
-    public function store(CompanyRequest $request)
-    {
-        Gate::authorize('create-company', Company::class);
-        $path = $request->file('logo')->store('public/logos');
-        $attributes = [
-            ...$request->validated(),
-            'logo' => '/'.str_replace('public', 'storage', $path),
-            'owner_id' => Auth::user()->id,
-        ];
-        $company = Company::create($attributes);
-
-        return to_route('companies.show', [$company->id]);
     }
 
     public function show(Company $company)
@@ -71,6 +54,27 @@ class CompanyController extends Controller
         $company->update($attributes);
 
         return to_route('companies.show', [$company->id]);
+    }
+
+    public function store(CompanyRequest $request)
+    {
+        Gate::authorize('create-company', Company::class);
+        $path = $request->file('logo')->store('public/logos');
+        $attributes = [
+            ...$request->validated(),
+            'logo' => '/'.str_replace('public', 'storage', $path),
+            'owner_id' => Auth::user()->id,
+        ];
+        $company = Company::create($attributes);
+
+        return to_route('companies.show', [$company->id]);
+    }
+
+    public function create()
+    {
+        Gate::authorize('create-company', Company::class);
+
+        return Inertia::render('companies/Create');
     }
 
     public function destroy(Company $company)
