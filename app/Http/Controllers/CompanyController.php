@@ -76,7 +76,7 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         Gate::authorize('delete-company', $company);
-        $company->delete();
+        Company::delete();
 
         return to_route('companies.index');
     }
