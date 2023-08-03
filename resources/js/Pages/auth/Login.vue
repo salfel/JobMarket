@@ -1,10 +1,12 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import AuthLayout from "@/layouts/AuthLayout.vue";
 import { useForm } from "@inertiajs/vue3";
-import FormInput from "@/components/FormInput.vue";
 import route from "ziggy-js";
+import InputText from "primevue/inputtext";
+import Password from "primevue/password";
+import Button from "primevue/button";
 
-defineOptions({ layout: AuthLayout })
+defineOptions({ layout: AuthLayout });
 
 let form = useForm({
 	email: null,
@@ -17,6 +19,7 @@ function handleSubmit() {
 			if (errors.email === "Invalid Credentials") {
 				form.reset("password");
 			}
+			//@ts-ignore
 			setTimeout(() => form.clearErrors(...Object.keys(errors)), 3000);
 		},
 	});
@@ -27,21 +30,34 @@ function handleSubmit() {
 	<form class="w-96 flex flex-col gap-5" @submit.prevent="handleSubmit">
 		<h1 class="text-2xl font-semibold text-center">Login</h1>
 
-		<FormInput name="Email" v-model:value="form.email" :error="form.errors.email"/>
-		<FormInput name="Password" v-model:value="form.password" :error="form.errors.password" type="password" />
+		<label class="flex flex-col gap-2">
+			<span>Email</span>
+			<InputText v-model="form.email" />
+			<small v-if="form.errors.email" class="text-red-500">{{
+				form.errors.email
+			}}</small>
+		</label>
 
-		<button
-			class="w-full px-3 py-1.5 text-white font-medium bg-cyan-400 hover:bg-cyan-500 rounded-md active:scale-[98%] transition-transform"
-			type="submit"
-		>
-			Login
-		</button>
+		<label class="flex flex-col gap-2">
+			<span>Password</span>
+			<Password
+				v-model="form.password"
+				:feedback="false"
+				inputClass="w-full"
+				toggleMask
+			/>
+			<small v-if="form.errors.password" class="text-red-500">{{
+				form.errors.password
+			}}</small>
+		</label>
+
+		<Button class="bg-blue-500" label="Login" />
 
 		<p class="text-sm mt-3 text-center text-gray-800">
 			Not logged in yet?
 			<a
+				:href="route('auth.register')"
 				class="font-medium text-sky-500 hover:underline"
-                :href="route('auth.register')"
 			>
 				Register instead!
 			</a>

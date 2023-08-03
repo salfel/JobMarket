@@ -1,18 +1,14 @@
+@import 'primevue/resources/primevue.min.css';
 @import 'primevue/resources/themes/lara-light-blue/theme.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html, body {
-	@apply font-rubik
-}
-
 ::-webkit-scrollbar {
-	@apply bg-gray-100 w-2
+	@apply bg-gray-100 w-3
 }
-
 
 ::-webkit-scrollbar-thumb {
-	@apply bg-sky-500 rounded-full;
+	@apply bg-blue-500 rounded-full;
 }

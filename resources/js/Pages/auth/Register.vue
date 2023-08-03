@@ -1,10 +1,12 @@
 <script lang="ts" setup>
 import AuthLayout from "@/layouts/AuthLayout.vue";
 import { useForm } from "@inertiajs/vue3";
-import FormInput from "@/components/FormInput.vue";
 import route from "ziggy-js";
+import InputText from "primevue/inputtext";
+import Password from "primevue/password";
+import Button from "primevue/button";
 
-defineOptions({ layout: AuthLayout })
+defineOptions({ layout: AuthLayout });
 
 let form = useForm({
 	name: null,
@@ -12,7 +14,6 @@ let form = useForm({
 	password: null,
 	password_confirmation: null,
 });
-
 
 function handleSubmit() {
 	form.post("/auth/register", {
@@ -28,27 +29,60 @@ function handleSubmit() {
 	<form class="w-96 flex flex-col gap-5" @submit.prevent="handleSubmit">
 		<h1 class="text-2xl font-semibold text-center">Register</h1>
 
-		<FormInput name="Name" v-model:value="form.name" :error="form.errors.name" />
-        <FormInput name="Email" v-model:value="form.email" :error="form.errors.email" />
-        <FormInput name="Password" v-model:value="form.password" :error="form.errors.password" type="password" />
-        <FormInput name="Password Confirmation" v-model:value="form.password_confirmation" :error="form.errors.password_confirmation" type="password" />
+		<label class="flex flex-col gap-2">
+			<span>Name</span>
+			<InputText v-model="form.name" />
+			<small v-if="form.errors.name" class="text-red-500">{{
+				form.errors.name
+			}}</small>
+		</label>
 
+		<label class="flex flex-col gap-2">
+			<span>Email</span>
+			<InputText v-model="form.email" />
+			<small v-if="form.errors.email" class="text-red-500">{{
+				form.errors.email
+			}}</small>
+		</label>
 
-		<button
-			class="w-full px-3 py-1.5 text-white font-medium bg-cyan-400 hover:bg-cyan-500 rounded-md active:scale-[98%] transition-transform"
-			type="submit"
-		>
-			Register
-		</button>
+		<label class="flex flex-col gap-2">
+			<span>Password</span>
+			<Password
+				v-model="form.password"
+				:feedback="false"
+				inputClass="w-full"
+				toggleMask
+			/>
+			<small v-if="form.errors.password" class="text-red-500">{{
+				form.errors.password
+			}}</small>
+		</label>
+
+		<label class="flex flex-col gap-2">
+			<span>Password Confirmation</span>
+			<Password
+				v-model="form.password_confirmation"
+				:feedback="false"
+				inputClass="w-full"
+				toggleMask
+			/>
+			<small
+				v-if="form.errors.password_confirmation"
+				class="text-red-500"
+				>{{ form.errors.password_confirmation }}</small
+			>
+		</label>
+
+		<Button class="bg-blue-500" label="Register" />
 
 		<p class="text-sm mt-3 text-center text-gray-800">
 			Already logged in?
-			<a
-				class="font-medium text-sky-500 hover:underline"
+			<Link
 				:href="route('auth.login')"
+				class="font-medium text-sky-500 hover:underline"
 			>
 				Login instead!
-			</a>
+			</Link>
 		</p>
 	</form>
 </template>
