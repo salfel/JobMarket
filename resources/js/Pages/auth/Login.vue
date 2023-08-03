@@ -52,12 +52,12 @@ function handleSubmit() {
 
 		<p class="text-sm mt-3 text-center text-gray-800">
 			Not logged in yet?
-			<a
+			<Link
 				:href="route('auth.register')"
 				class="font-medium text-blue-500 hover:underline"
 			>
 				Register instead!
-			</a>
+			</Link>
 		</p>
 	</form>
 </template>

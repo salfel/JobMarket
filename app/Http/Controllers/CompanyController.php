@@ -15,7 +15,7 @@ class CompanyController extends Controller
     {
         return Inertia::render('companies/Index', [
             'companies' => fn (
-            ) => Company::search($request->get('q'))->paginate(10)->withQueryString()->appends(['query' => null]),
+            ) => Company::search($request->get('q'))->when('region', $request->get('region'))->paginate(10)->withQueryString()->appends(['query' => null]),
         ]);
     }
 
