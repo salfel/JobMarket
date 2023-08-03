@@ -8,12 +8,13 @@ export interface Company {
 	id: string;
 	name: string;
 	description: string;
-	logo: string;
+	logo: string | File;
 	email: string;
 	phone: string;
 	website: string;
 	region: string;
 	location: string;
+	owner_id: string
 }
 
 export interface Pagination<T> {

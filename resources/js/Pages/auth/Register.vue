@@ -2,9 +2,6 @@
 import AuthLayout from "@/layouts/AuthLayout.vue";
 import { useForm } from "@inertiajs/vue3";
 import route from "ziggy-js";
-import InputText from "primevue/inputtext";
-import Password from "primevue/password";
-import Button from "primevue/button";
 
 defineOptions({ layout: AuthLayout });
 
@@ -73,13 +70,13 @@ function handleSubmit() {
 			>
 		</label>
 
-		<Button class="bg-blue-500" label="Register" />
+		<Button type="submit" class="bg-blue-500" label="Register" />
 
 		<p class="text-sm mt-3 text-center text-gray-800">
 			Already logged in?
 			<Link
 				:href="route('auth.login')"
-				class="font-medium text-sky-500 hover:underline"
+				class="font-medium text-blue-500 hover:underline"
 			>
 				Login instead!
 			</Link>

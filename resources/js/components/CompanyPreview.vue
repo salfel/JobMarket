@@ -3,7 +3,7 @@ import type { Company } from "@/utils/types";
 import route from "ziggy-js";
 import Card from "primevue/card";
 
-const props = defineProps<{
+defineProps<{
 	company: Company;
 }>();
 </script>
@@ -24,7 +24,7 @@ const props = defineProps<{
 					<p class="line-clamp-2">{{ company.description }}</p>
 				</div>
 				<div
-					class="flex items-center gap-1 text-sky-600 cursor-default"
+					class="flex items-center gap-1 text-blue-600 cursor-default"
 				>
 					<svg
 						class="w-6 h-6"

@@ -1,6 +1,13 @@
 import { createApp, h } from "vue";
 import { createInertiaApp, Link } from "@inertiajs/vue3";
 import PrimeVue from "primevue/config";
+import Button from "primevue/button";
+import InputText from "primevue/inputtext"
+import Password from "primevue/password"
+import Textarea from "primevue/textarea";
+import FileUpload from "primevue/fileupload";
+import AutoComplete from "primevue/autocomplete";
+import Card from "primevue/card"
 
 createInertiaApp({
 	resolve: (name) => {
@@ -12,6 +19,13 @@ createInertiaApp({
 			.use(plugin)
 			.use(PrimeVue)
 			.component("Link", Link)
+			.component('Button', Button)
+			.component('InputText', InputText)
+			.component('Password', Password)
+			.component('Textarea', Textarea)
+			.component('FileUpload', FileUpload)
+			.component('AutoComplete', AutoComplete)
+			.component('Card', Card)
 			.mount(el);
 	},
 });

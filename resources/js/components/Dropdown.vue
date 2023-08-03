@@ -23,7 +23,7 @@
 							<Link
 								:class="[
 									active
-										? 'bg-sky-500 text-white'
+										? 'bg-blue-500 text-white'
 										: 'text-gray-900',
 									'group flex w-full items-center rounded-md px-2 py-2 text-sm',
 								]"
@@ -36,7 +36,7 @@
 							<Link
 								:class="[
 									active
-										? 'bg-sky-500 text-white'
+										? 'bg-blue-500 text-white'
 										: 'text-gray-900',
 									'group flex w-full items-center rounded-md px-2 py-2 text-sm',
 								]"
@@ -54,7 +54,7 @@
 								:href="route('auth.logout')"
 								:class="[
 									active
-										? 'bg-sky-500 text-white'
+										? 'bg-blue-500 text-white'
 										: 'text-red-500',
 									'block w-full rounded-md text-sm p-2 text-left',
 								]"

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Link, usePage } from "@inertiajs/vue3";
+import { usePage } from "@inertiajs/vue3";
 import Dropdown from "@/components/Dropdown.vue";
 import route from "ziggy-js";
 </script>
@@ -8,7 +8,7 @@ import route from "ziggy-js";
 	<header
 		class="sticky top-0 left-0 flex items-center justify-around h-16 bg-white"
 	>
-		<Link class="text-2xl font-bold text-sky-500 tracking-tighter" href="/"
+		<Link class="text-2xl font-bold text-blue-500 tracking-tighter" href="/"
 			>JobMarket
 		</Link>
 
@@ -16,7 +16,7 @@ import route from "ziggy-js";
 			<ul class="flex items-center justify-around gap-10">
 				<li>
 					<Link
-						class="font-medium hover:text-sky-500 hover:underline"
+						class="font-medium hover:text-blue-500 hover:underline"
 						:href="route('companies.create')"
 					>
 						Start Listing
@@ -24,7 +24,7 @@ import route from "ziggy-js";
 				</li>
 				<li>
 					<Link
-						class="font-medium hover:text-sky-500 hover:underline"
+						class="font-medium hover:text-blue-500 hover:underline"
 						href="/jobs"
 					>
 						Jobs
@@ -33,7 +33,7 @@ import route from "ziggy-js";
 				<li>
 					<Link
 						:href="route('companies.index')"
-						class="font-medium hover:text-sky-500 hover:underline"
+						class="font-medium hover:text-blue-500 hover:underline"
 					>
 						Companies
 					</Link>
@@ -43,12 +43,10 @@ import route from "ziggy-js";
 		<Dropdown v-if="usePage().props.user" />
 		<Link
 			v-else
-			class="font-medium hover:text-sky-500 hover:underline"
+			class="font-medium hover:text-blue-500 hover:underline"
 			href="/auth/login"
 		>
 			Login
 		</Link>
 	</header>
 </template>
-
-<style scoped></style>

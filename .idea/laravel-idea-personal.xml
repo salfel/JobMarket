@@ -4,6 +4,7 @@
     <option name="generationStringOptionValues">
       <map>
         <entry key="createConsoleCommand.register" value="1" />
+        <entry key="createController.singleAction" value="1" />
         <entry key="createFormRequest.generateAuthorize" value="" />
         <entry key="internal.bladeComponentMergeClassAttribute" value="" />
         <entry key="internal.bladeComponentOpenFile" value="1" />

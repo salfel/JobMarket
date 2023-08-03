@@ -1,35 +1,42 @@
 <script lang="ts" setup>
 import AppLayout from "@/layouts/AppLayout.vue";
 import { AutoCompleteCompleteEvent } from "primevue/autocomplete";
-import { useForm } from "@inertiajs/vue3";
+import {usePage, useForm} from "@inertiajs/vue3";
 import { regions as _regions } from "@/utils/constants";
 import route from "ziggy-js";
-import { ref } from "vue";
+import {onMounted, ref} from "vue";
+import {Company} from "@/utils/types";
 import {FileUploadSelectEvent} from "primevue/fileupload";
 
 defineOptions({ layout: AppLayout });
 
-const regions = ref(_regions);
+const props = defineProps<{
+	company: Company
+}>()
 
-let form = useForm({
-	name: "",
-	description: "",
-	website: "",
-	phone: "",
-	email: "",
-	region: "",
-	location: "",
-	logo: null,
-});
+const regions = ref(_regions);
+let form = useForm(props.company);
 
 function searchRegion(event: AutoCompleteCompleteEvent) {
-	regions.value = _regions.filter((region) =>
+	regions.value = _regions.filter((region: string) =>
 		region.toLowerCase().includes(event.query.toLowerCase())
 	);
 }
 
-function onSelect(e: FileUploadSelectEvent) {
-	form.logo = e.files[0]
+async function onSelect(e: FileUploadSelectEvent) {
+	const formData = new FormData()
+	formData.append('logo', e.files[0])
+    //@ts-ignore
+	formData.append('_token', usePage().props._token)
+	const response = await fetch(route('upload'), {
+		method: 'POST',
+		body: formData
+	})
+    form.logo = (await response.json()).path
+}
+
+function handleSubmit() {
+	form.patch(route('companies.update', [props.company.id]))
 }
 
 </script>
@@ -37,7 +44,7 @@ function onSelect(e: FileUploadSelectEvent) {
 <template>
 	<form
 		class="flex flex-col gap-3"
-		@submit.prevent="form.post(route('companies.store'))"
+		@submit.prevent="handleSubmit"
 	>
 		<label class="flex flex-col gap-2">
 			<span>Name</span>
@@ -109,6 +116,6 @@ function onSelect(e: FileUploadSelectEvent) {
 			</label>
 		</div>
 
-		<Button class="bg-blue-500 mt-3" label="Create Company" type="submit" />
+		<Button class="bg-blue-500 mt-3" label="Update Company" type="submit" />
 	</form>
 </template>

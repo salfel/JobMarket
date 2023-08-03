@@ -15,8 +15,8 @@
 			v-html="link.label"
 			:href="link.url ?? '#'"
 			:class="{
-				'px-3 py-1.5 ring-1 ring-gray-300 hover:bg-sky-200 focus:bg-gray-50': true,
-				'font-medium bg-sky-500 text-white border-sky-500': link.active,
+				'px-3 py-1.5 ring-1 ring-gray-300 hover:bg-blue-200 focus:bg-gray-50': true,
+				'font-medium bg-blue-500 text-white border-blue-500': link.active,
 				'pointer-events-none bg-gray-100': link.url == null
 			}"
 		/>

@@ -21,6 +21,7 @@ class Company extends Model
         'email',
         'region',
         'location',
+        'owner_id',
     ];
 
     protected $casts = [

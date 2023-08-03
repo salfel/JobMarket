@@ -26,6 +26,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\CsrfController;
+use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn () => inertia('Home'))->name('home');
@@ -39,3 +41,6 @@ Route::prefix('auth')->group(function () {
     Route::post('register', [AuthController::class, 'store'])->name('auth.store');
     Route::post('logout', [AuthController::class, 'logout'])->name('auth.logout');
 });
+
+Route::post('upload', UploadController::class)->name('upload');
+Route::get('token', CsrfController::class)->name('csrf');
