@@ -6,7 +6,7 @@ import route from "ziggy-js";
 
 <template>
 	<header
-		class="sticky top-0 left-0 flex items-center justify-around h-16 bg-white z-50"
+		class="sticky top-0 left-0 flex items-center justify-around h-16 bg-white z-10"
 	>
 		<Link class="text-2xl font-bold text-blue-500 tracking-tighter" href="/"
 			>JobMarket
@@ -16,8 +16,8 @@ import route from "ziggy-js";
 			<ul class="flex items-center justify-around gap-10">
 				<li>
 					<Link
-						class="font-medium hover:text-blue-500 hover:underline"
 						:href="route('companies.create')"
+						class="font-medium hover:text-blue-500 hover:underline"
 					>
 						Start Listing
 					</Link>

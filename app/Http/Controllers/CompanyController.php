@@ -30,25 +30,6 @@ class CompanyController extends Controller
         ]);
     }
 
-    public function edit(Company $company)
-    {
-        Gate::authorize('update-company', $company);
-
-        return Inertia::render('companies/Edit', [
-            'company' => $company,
-        ]);
-    }
-
-    public function update(CompanyRequest $request, Company $company)
-    {
-        Gate::authorize('update-company', $company);
-        $path = null;
-        $attributes = $request->validated();
-        $company->update($attributes);
-
-        return to_route('companies.show', [$company->id]);
-    }
-
     public function store(CompanyRequest $request)
     {
         Gate::authorize('create-company', Company::class);
@@ -63,17 +44,43 @@ class CompanyController extends Controller
         return to_route('companies.show', [$company->id]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        Gate::authorize('create-company', Company::class);
+        if (! Gate::allows('create-company')) {
+            $request->session()->flash('alert', ['type' => 'error', 'message' => 'You have to be logged in!']);
+
+            return redirect()->back();
+        }
 
         return Inertia::render('companies/Create');
+    }
+
+    public function edit(Company $company)
+    {
+        if (! Gate::allows('update-company', $company)) {
+            session()->flash('toast', ['type' => 'error', 'message' => 'You are not authorized to edit this company.']);
+
+            return back();
+        }
+
+        return Inertia::render('companies/Edit', [
+            'company' => $company,
+        ]);
+    }
+
+    public function update(CompanyRequest $request, Company $company)
+    {
+        Gate::authorize('update-company', $company);
+        $attributes = $request->validated();
+        $company->update($attributes);
+
+        return to_route('companies.show', [$company->id]);
     }
 
     public function destroy(Company $company)
     {
         Gate::authorize('delete-company', $company);
-        Company::delete();
+        $company->delete();
 
         return to_route('companies.index');
     }

@@ -14,7 +14,7 @@ export interface Company {
 	website: string;
 	region: string;
 	location: string;
-	owner_id: string
+	owner_id: string;
 }
 
 export interface Pagination<T> {
@@ -35,4 +35,9 @@ export interface Pagination<T> {
 		active: boolean;
 	}[];
 	data: T[];
+}
+
+export interface Alert {
+	type: "success" | "info" | "warn" | "error" | undefined;
+	message: string;
 }

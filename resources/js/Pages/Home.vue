@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import AppLayout from "@/layouts/AppLayout.vue";
+import { usePage } from "@inertiajs/vue3";
 
-defineOptions({ layout: AppLayout })
+defineOptions({ layout: AppLayout });
 </script>
 
-<template>home</template>
+<template>{{ usePage().props.flash?.message }}</template>

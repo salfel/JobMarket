@@ -18,12 +18,8 @@
 		"vite": "^4.4.7"
 	},
 	"dependencies": {
-		"@alpinejs/mask": "^3.12.3",
-		"@headlessui/vue": "^1.7.15",
-		"@heroicons/vue": "^2.0.18",
 		"@inertiajs/vue3": "^1.0.9",
 		"@vitejs/plugin-vue": "^4.2.3",
-		"alpinejs": "^3.12.3",
 		"lodash": "^4.17.21",
 		"primevue": "^3.31.0",
 		"vue": "^3.3.4",
