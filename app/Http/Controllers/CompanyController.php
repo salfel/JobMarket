@@ -16,7 +16,7 @@ class CompanyController extends Controller
         $companies = Company::search($request->get('q'))->take(500)->get()->toArray();
         $companies = array_filter($companies,
             fn ($company) => str_contains(strtolower($company['region']), strtolower($request->get('region') ?: '')));
-        $companies = paginateArray($companies, path: '/companies');
+        $companies = paginateArray($companies, 10, path: '/companies');
 
         return Inertia::render('companies/Index', [
             'companies' => fn () => $companies,
