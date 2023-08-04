@@ -9,14 +9,14 @@
 </script>
 
 <template>
-	<div class="flex items-center justify-center mt-5">
+	<div class="flex items-center justify-center my-5">
 		<Link
 			v-for="link in paginator.links"
 			v-html="link.label"
 			:href="link.url ?? '#'"
 			:class="{
 				'px-3 py-1.5 ring-1 ring-gray-300 hover:bg-blue-200 focus:bg-gray-50': true,
-				'font-medium bg-blue-500 text-white border-blue-500': link.active,
+				'font-medium bg-blue-500 hover:bg-blue-500 text-white border-blue-500': link.active,
 				'pointer-events-none bg-gray-100': link.url == null
 			}"
 		/>

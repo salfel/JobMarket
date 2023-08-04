@@ -6,7 +6,7 @@ import route from "ziggy-js";
 
 <template>
 	<header
-		class="sticky top-0 left-0 flex items-center justify-around h-16 bg-white"
+		class="sticky top-0 left-0 flex items-center justify-around h-16 bg-white z-50"
 	>
 		<Link class="text-2xl font-bold text-blue-500 tracking-tighter" href="/"
 			>JobMarket

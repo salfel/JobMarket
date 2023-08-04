@@ -38,7 +38,7 @@ function searchRegion(event: AutoCompleteCompleteEvent) {
 </script>
 
 <template>
-	<div class="w-full">
+	<div class="h-full z-0">
 		<div class="space-x-5">
 			<InputText
 				v-model="search"
@@ -67,6 +67,7 @@ function searchRegion(event: AutoCompleteCompleteEvent) {
 				:company="company"
 			/>
 		</div>
-		<Paginator :paginator="companies" />
 	</div>
+
+	<Paginator :paginator="companies" />
 </template>
