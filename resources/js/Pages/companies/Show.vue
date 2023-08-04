@@ -47,7 +47,7 @@
 			</div>
 		</div>
 
-		<div v-if="user && user.id === company.owner_id" class="mt-10">
+		<div v-if="user && user.id === company.owner_id" class="mt-5">
 			<Link :href="route('companies.edit', [company.id])">
 				<Button label="Edit" text/>
 			</Link>
@@ -57,6 +57,6 @@
 			</Link>
 		</div>
 
-		<span class="inline-block text-lg font-medium mt-16">There are no listings available</span>
+		<span class="inline-block text-lg font-medium mt-12">There are no Jobs available</span>
 	</div>
 </template>

@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 import AppLayout from "@/layouts/AppLayout.vue";
 import { AutoCompleteCompleteEvent } from "primevue/autocomplete";
-import {usePage, useForm} from "@inertiajs/vue3";
+import {useForm} from "@inertiajs/vue3";
 import { regions as _regions } from "@/utils/constants";
 import route from "ziggy-js";
-import {onMounted, ref} from "vue";
+import {ref} from "vue";
 import {Company} from "@/utils/types";
+import {uploadFile} from "@/utils/functions";
 import {FileUploadSelectEvent} from "primevue/fileupload";
 
 defineOptions({ layout: AppLayout });
@@ -15,7 +16,11 @@ const props = defineProps<{
 }>()
 
 const regions = ref(_regions);
-let form = useForm(props.company);
+let form = useForm({
+	...props.company
+});
+
+let logo: File;
 
 function searchRegion(event: AutoCompleteCompleteEvent) {
 	regions.value = _regions.filter((region: string) =>
@@ -24,18 +29,13 @@ function searchRegion(event: AutoCompleteCompleteEvent) {
 }
 
 async function onSelect(e: FileUploadSelectEvent) {
-	const formData = new FormData()
-	formData.append('logo', e.files[0])
-    //@ts-ignore
-	formData.append('_token', usePage().props._token)
-	const response = await fetch(route('upload'), {
-		method: 'POST',
-		body: formData
-	})
-    form.logo = (await response.json()).path
+	logo = e.files[0];
 }
 
-function handleSubmit() {
+async function handleSubmit() {
+	if (logo) {
+		form.logo = await uploadFile(logo);
+	}
 	form.patch(route('companies.update', [props.company.id]))
 }
 

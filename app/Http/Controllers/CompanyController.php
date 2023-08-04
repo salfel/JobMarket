@@ -43,14 +43,7 @@ class CompanyController extends Controller
     {
         Gate::authorize('update-company', $company);
         $path = null;
-        if ($request->hasFile('logo')) {
-            $path = $request->file('logo')->store('public/logos');
-            $path = '/'.str_replace('public', 'storage', $path);
-        }
         $attributes = $request->validated();
-        if ($path != null) {
-            $attributes['logo'] = $path;
-        }
         $company->update($attributes);
 
         return to_route('companies.show', [$company->id]);

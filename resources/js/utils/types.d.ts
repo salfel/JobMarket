@@ -8,7 +8,7 @@ export interface Company {
 	id: string;
 	name: string;
 	description: string;
-	logo: string | File;
+	logo: string;
 	email: string;
 	phone: string;
 	website: string;
