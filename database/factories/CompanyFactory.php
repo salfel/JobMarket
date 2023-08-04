@@ -19,7 +19,7 @@ class CompanyFactory extends Factory
             'website' => $this->faker->url(),
             'phone' => $this->faker->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail(),
-            'region' => $this->faker->country(),
+            'region' => $this->faker->randomElement(config('constants.regions')),
             'location' => $this->faker->city(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),

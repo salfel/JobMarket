@@ -52,6 +52,7 @@ function searchRegion(event: AutoCompleteCompleteEvent) {
 				dropdown-class="bg-blue-500"
 				placeholder="Region"
 				@complete="searchRegion"
+				@itemSelect="searchCompanies"
 			/>
 			<Button
 				class="bg-blue-500"
