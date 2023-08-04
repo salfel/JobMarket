@@ -15,7 +15,7 @@
 <template>
 	<div>
 		<div class="flex gap-5">
-			<img :src="company.logo" :alt="company.name" class="h-24 w-24"/>
+			<img :src="company.logo as string" :alt="company.name" class="h-24 w-24"/>
 			<div>
 				<div class="max-w-2xl">
 					<div class="flex justify-between items-center mb-1">
@@ -47,7 +47,7 @@
 			</div>
 		</div>
 
-		<div v-if="user.id === company.owner_id" class="mt-10">
+		<div v-if="user && user.id === company.owner_id" class="mt-10">
 			<Link :href="route('companies.edit', [company.id])">
 				<Button label="Edit" text/>
 			</Link>
