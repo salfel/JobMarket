@@ -9,7 +9,7 @@ const show = props.paginator.total > props.paginator.per_page
 </script>
 
 <template>
-	<div v-show="false" class="flex items-center justify-center mt-5">
+	<div v-show="show" class="flex items-center justify-center mt-5">
 		<Link
 			v-for="link in paginator.links"
 			:class="{
