@@ -1,62 +1,60 @@
-<script setup lang="ts">
-	import AppLayout from "@/layouts/AppLayout.vue";
-	import { MapPinIcon, GlobeAltIcon, EnvelopeIcon, PhoneIcon } from '@heroicons/vue/24/solid'
-	import type {Company, User} from "@/utils/types";
-	import route from "ziggy-js";
+<script lang="ts" setup>
+import AppLayout from "@/layouts/AppLayout.vue";
+import type {Company, Job, Pagination} from "@/utils/types";
+import JobPreview from "@/components/JobPreview.vue";
+import Paginator from "@/components/Paginator.vue"
 
-	defineProps<{
-		company: Company,
-		user: User
-	}>();
+const props = defineProps<{
+	company: Company, jobs: Pagination<Job>
+}>();
 
-	defineOptions({ layout: AppLayout})
+defineOptions({layout: AppLayout})
+
 </script>
 
 <template>
-	<div>
-		<div class="flex gap-5">
-			<img :src="company.logo as string" :alt="company.name" class="h-24 w-24"/>
-			<div>
-				<div class="max-w-2xl">
-					<div class="flex justify-between items-center mb-1">
-						<h1 class="text-2xl font-semibold">{{ company.name }}</h1>
-						<div class="flex items-center gap-1 text-blue-600">
-							<MapPinIcon class="h-6 w-6" />
-							<span>{{ company.location }}</span>
-						</div>
+	<Card :pt="{ title: { class: 'flex items-start gap-5' }}">
+		<template #title>
+			<img :alt="company.name" :src="company.logo" class="inline-block w-20 h-20"/>
+			<div class="flex-1 ">
+				<div class="flex items-center justify-between">
+					<span>{{ company.name }}</span>
+					<div class="flex items-center gap-2">
+						<i class="pi pi-map-marker"></i>
+						<span class="font-normal text-base">{{ company.location }}</span>
 					</div>
-					<p>{{ company.description }}</p>
 				</div>
-				<div class="flex items-center gap-24 mt-3">
-					<a :href="company.website" class="font-medium hover:text-blue-500">
-						<GlobeAltIcon class="w-5 h-5 inline-block mr-2" />
-
-						<span class="align-middle">Website</span>
+				<div class="flex items-center gap-12 mt-2">
+					<a :href="company.website"
+					   class="flex items-center gap-2 hover:text-blue-500"
+					   target="_blank">
+						<i class="pi pi-globe"></i>
+						<span class="text-base">Website</span>
 					</a>
-					<a :href="'mailto:' + company.email" class="font-medium hover:text-blue-500">
-						<EnvelopeIcon class="w-5 h-5 inline-block mr-2" />
-
-						<span class="align-middle">Email</span>
+					<a :href="'mailto:' + company.email"
+					   class="flex items-center gap-2 hover:text-blue-500">
+						<i class="pi pi-envelope"></i>
+						<span class="text-base">Email</span>
 					</a>
-					<a :href="'tel:' + company.phone" class="font-medium hover:text-blue-500">
-						<PhoneIcon class="w-5 h-5 inline-block mr-2" />
-
-						<span class="align-middle">Phone</span>
+					<a :href="'tel:' + company.phone"
+					   class="flex items-center gap-2 hover:text-blue-500">
+						<i class="pi pi-phone"></i>
+						<span class="text-base">Phone</span>
 					</a>
 				</div>
 			</div>
+		</template>
+		<template #content>
+			{{ company.description }}
+		</template>
+	</Card>
+
+	<div class="mt-16 flex-1">
+		<span class="font-medium text-xl">There are {{ jobs.data.length }} jobs available!</span>
+
+		<div class="space-y-12 mt-5">
+			<JobPreview v-for="job in jobs.data" :job="job"/>
 		</div>
-
-		<div v-if="user && user.id === company.owner_id" class="mt-5">
-			<Link :href="route('companies.edit', [company.id])">
-				<Button label="Edit" text/>
-			</Link>
-
-			<Link as="button" method="DELETE" :href="route('companies.destroy', [company.id])">
-				<Button label="Delete" severity="danger" text/>
-			</Link>
-		</div>
-
-		<span class="inline-block text-lg font-medium mt-12">There are no Jobs available</span>
 	</div>
+	<Paginator :paginator="jobs"/>
 </template>

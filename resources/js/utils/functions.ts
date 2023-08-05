@@ -7,8 +7,14 @@ export async function uploadFile(file: File) {
 	//@ts-ignore
 	formData.append('_token', usePage().props._token)
 	const response = await fetch(route('upload'), {
-		method: 'POST',
-		body: formData
+		method: 'POST', body: formData
 	})
 	return (await response.json()).path
+}
+
+export function convertDate(d: string) {
+	const date = new Date(d);
+	const month = String(date.getMonth() + 1).padStart(2, '0');
+	const day = String(date.getDate()).padStart(2, '0');
+	return month + '.' + day;
 }

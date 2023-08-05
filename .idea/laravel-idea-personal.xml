@@ -9,7 +9,9 @@
         <entry key="internal.bladeComponentMergeClassAttribute" value="" />
         <entry key="internal.bladeComponentOpenFile" value="1" />
         <entry key="newModelSimpleOption:addFillable" value="1" />
+        <entry key="postGeneration:controller" value="1" />
         <entry key="postGeneration:databaseClassFactory" value="1" />
+        <entry key="postGeneration:formRequest" value="1" />
         <entry key="postGeneration:policy" value="1" />
       </map>
     </option>

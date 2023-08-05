@@ -10,7 +10,7 @@ class CompanySeeder extends Seeder
 {
     public function run(): void
     {
-        Company::factory(500)->create([
+        Company::factory(50)->create([
             'owner_id' => User::first()->id,
         ]);
     }

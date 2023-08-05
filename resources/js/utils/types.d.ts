@@ -15,6 +15,21 @@ export interface Company {
 	region: string;
 	location: string;
 	owner_id: string;
+	jobs: Job[]
+	created_at: string;
+	updated_at: string
+}
+
+export interface Job {
+	id: string;
+	name: string;
+	description: string;
+	company: Company;
+	type: 'full-time' | 'part-time' | 'internship'
+	location: string;
+	region: string;
+	created_at: string;
+	updated_at: string
 }
 
 export interface Pagination<T> {
@@ -30,9 +45,7 @@ export interface Pagination<T> {
 	to: number;
 	total: number;
 	links: {
-		url: string;
-		label: string;
-		active: boolean;
+		url: string; label: string; active: boolean;
 	}[];
 	data: T[];
 }

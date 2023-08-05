@@ -27,12 +27,13 @@ class CompanyController extends Controller
     {
         return Inertia::render('companies/Show', [
             'company' => $company,
+            'jobs' => $company->jobs()->orderBy('created_at', 'desc')->paginate(10),
         ]);
     }
 
     public function store(CompanyRequest $request)
     {
-        Gate::authorize('create-company', Company::class);
+        Gate::authorize('create', Company::class);
         $path = $request->file('logo')->store('public/logos');
         $attributes = [
             ...$request->validated(),
@@ -46,7 +47,7 @@ class CompanyController extends Controller
 
     public function create(Request $request)
     {
-        if (! Gate::allows('create-company')) {
+        if (! Gate::allows('create', Company::class)) {
             $request->session()->flash('alert', ['type' => 'error', 'message' => 'You have to be logged in!']);
 
             return redirect()->back();
@@ -57,7 +58,7 @@ class CompanyController extends Controller
 
     public function edit(Company $company)
     {
-        if (! Gate::allows('update-company', $company)) {
+        if (! Gate::allows('update', $company)) {
             session()->flash('toast', ['type' => 'error', 'message' => 'You are not authorized to edit this company.']);
 
             return back();
@@ -70,7 +71,7 @@ class CompanyController extends Controller
 
     public function update(CompanyRequest $request, Company $company)
     {
-        Gate::authorize('update-company', $company);
+        Gate::authorize('update', $company);
         $attributes = $request->validated();
         $company->update($attributes);
 
@@ -79,7 +80,7 @@ class CompanyController extends Controller
 
     public function destroy(Company $company)
     {
-        Gate::authorize('delete-company', $company);
+        Gate::authorize('delete', $company);
         $company->delete();
 
         return to_route('companies.index');

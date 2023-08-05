@@ -6,37 +6,28 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Scout\Searchable;
 
-class Company extends Model
+class Job extends Model
 {
     use HasFactory, HasUuids, Searchable;
 
     protected $fillable = [
         'name',
         'description',
-        'logo',
-        'website',
-        'phone',
-        'email',
-        'region',
+        'company_id',
+        'type',
         'location',
-        'owner_id',
+        'region',
     ];
 
-    public function owner(): BelongsTo
+    public function company(): BelongsTo
     {
-        return $this->belongsTo(User::class);
-    }
-
-    public function jobs(): HasMany
-    {
-        return $this->hasMany(Job::class);
+        return $this->belongsTo(Company::class);
     }
 
     public function searchableAs(): string
     {
-        return 'companies_index';
+        return 'jobs_index';
     }
 }

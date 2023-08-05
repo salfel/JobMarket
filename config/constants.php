@@ -13,4 +13,9 @@ return [
         'Spain',
         'Australia',
     ],
+    'jobType' => [
+        'full-time',
+        'part-time',
+        'internship',
+    ],
 ];
