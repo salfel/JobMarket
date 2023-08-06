@@ -25,7 +25,8 @@ export interface Job {
 	name: string;
 	description: string;
 	company: Company;
-	type: 'full-time' | 'part-time' | 'internship'
+	employment_type: 'full-time' | 'part-time' | 'internship';
+	experience_level: 'beginner' | 'intermediate' | 'expert';
 	location: string;
 	region: string;
 	created_at: string;

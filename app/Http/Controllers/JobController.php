@@ -13,7 +13,10 @@ class JobController extends Controller
     {
         $jobs = Job::search($request->get('q'))->take(500)->get()->toArray();
         $jobs = array_filter($jobs,
-            fn ($job) => str_contains(strtolower($job['region']), strtolower($request->get('region') ?: '')));
+            fn ($job) => str_contains(strtolower($job['region']),
+                strtolower($request->get('region') ?: '')));
+
+        $jobs = sortByDate($jobs);
         $jobs = paginateArray($jobs, 10, path: '/jobs');
 
         return Inertia::render('jobs/Index', [
@@ -30,9 +33,9 @@ class JobController extends Controller
 
     public function show(Job $job)
     {
-        $this->authorize('view', $job);
-
-        return $job;
+        return Inertia::render('jobs/Show', [
+            'job' => $job,
+        ]);
     }
 
     public function update(JobRequest $request, Job $job)

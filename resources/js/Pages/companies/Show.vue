@@ -19,27 +19,27 @@ defineOptions({layout: AppLayout})
 			<div class="flex-1 ">
 				<div class="flex items-center justify-between">
 					<span>{{ company.name }}</span>
-					<div class="flex items-center gap-2">
+					<div class="space-x-2">
 						<i class="pi pi-map-marker"></i>
 						<span class="font-normal text-base">{{ company.location }}</span>
 					</div>
 				</div>
-				<div class="flex items-center gap-12 mt-2">
+				<div class="flex flex-wrap items-center gap-x-12 mt-2">
 					<a :href="company.website"
-					   class="flex items-center gap-2 hover:text-blue-500"
+					   class="space-x-2 hover:text-blue-500"
 					   target="_blank">
 						<i class="pi pi-globe"></i>
-						<span class="text-base">Website</span>
+						<span class="text-base">{{ company.website }}</span>
 					</a>
 					<a :href="'mailto:' + company.email"
-					   class="flex items-center gap-2 hover:text-blue-500">
+					   class="space-x-2 hover:text-blue-500">
 						<i class="pi pi-envelope"></i>
-						<span class="text-base">Email</span>
+						<span class="text-base">{{ company.email }}</span>
 					</a>
 					<a :href="'tel:' + company.phone"
-					   class="flex items-center gap-2 hover:text-blue-500">
+					   class="space-x-2 hover:text-blue-500">
 						<i class="pi pi-phone"></i>
-						<span class="text-base">Phone</span>
+						<span class="text-base">{{ company.phone }}</span>
 					</a>
 				</div>
 			</div>

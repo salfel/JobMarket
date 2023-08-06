@@ -13,9 +13,14 @@ return [
         'Spain',
         'Australia',
     ],
-    'jobType' => [
+    'employmentType' => [
         'full-time',
         'part-time',
         'internship',
+    ],
+    'experienceLevel' => [
+        'beginner',
+        'intermediate',
+        'expert',
     ],
 ];

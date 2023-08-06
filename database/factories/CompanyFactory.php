@@ -12,11 +12,16 @@ class CompanyFactory extends Factory
 
     public function definition(): array
     {
+        $url = $this->faker->url();
+        $array = explode('/', $url);
+        array_pop($array);
+        $url = implode('/', $array);
+
         return [
             'name' => $this->faker->unique()->company(),
             'description' => $this->faker->text(500),
             'logo' => $this->faker->imageUrl(),
-            'website' => $this->faker->url(),
+            'website' => $url,
             'phone' => $this->faker->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail(),
             'region' => $this->faker->randomElement(config('constants.regions')),

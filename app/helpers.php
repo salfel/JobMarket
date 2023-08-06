@@ -14,3 +14,23 @@ function paginateArray($items, $perPage = 15, $page = null, $options = [], $path
 
     return $paginator->withQueryString();
 }
+
+function sortByDate(array $array, string $key = 'created_at')
+{
+    usort($array, function ($a, $b) use ($key) {
+        $a = $a[$key];
+        $b = $b[$key];
+
+        if ($a > $b) {
+            return 1;
+        } else {
+            if ($a < $b) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+    });
+
+    return $array;
+}

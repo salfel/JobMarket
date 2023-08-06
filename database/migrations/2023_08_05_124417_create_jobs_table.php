@@ -13,7 +13,8 @@ return new class extends Migration
             $table->foreignUuid('company_id')->constrained()->onDelete('cascade');
             $table->string('name');
             $table->text('description');
-            $table->string('type');
+            $table->string('employment_type');
+            $table->string('experience_level');
             $table->string('region');
             $table->string('location');
             $table->timestamps();
