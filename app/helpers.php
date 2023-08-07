@@ -8,7 +8,7 @@ function paginateArray($items, $perPage = 15, $page = null, $options = [], $path
     $page = $page ?: (LengthAwarePaginator::resolveCurrentPage() ?: 1);
     $items = $items instanceof Collection ? $items : Collection::make($items);
 
-    $paginator = new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
+    $paginator = new LengthAwarePaginator($items->forPage($page, $perPage)->values(), $items->count(), $perPage, $page, $options);
 
     $paginator->setPath($path);
 

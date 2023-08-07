@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type {Company} from "@/utils/types";
-import Card from "primevue/card";
+import type {Company} from "@/lib/types";
+import Card from "";
 import route from "ziggy-js";
 
 defineProps<{

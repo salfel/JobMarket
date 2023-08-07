@@ -13,9 +13,11 @@ class CompanyController extends Controller
 {
     public function index(Request $request)
     {
-        $companies = Company::search($request->get('q'))->take(500)->get()->toArray();
+        $companies = Company::search($request->get('q'))->take(1000)->get()->toArray();
+        $regions = explode(',', strtolower($request->get('region')) ?: '');
+        empty($regions[0]) && $regions = [];
         $companies = array_filter($companies,
-            fn ($company) => str_contains(strtolower($company['region']), strtolower($request->get('region') ?: '')));
+            fn ($company) => count($regions) === 0 || in_array(strtolower($company['region']), $regions));
         $companies = paginateArray($companies, 10, path: '/companies');
 
         return Inertia::render('companies/Index', [

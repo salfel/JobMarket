@@ -19,7 +19,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Index Prefix
+    | Home Prefix
     |--------------------------------------------------------------------------
     |
     | Here you may specify a prefix that will be applied to all search index

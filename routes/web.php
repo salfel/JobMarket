@@ -2,12 +2,11 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyController;
-use App\Http\Controllers\CsrfController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn () => inertia('Home'))->name('home');
+Route::inertia('/', 'Home')->name('home');
 
 Route::resource('companies', CompanyController::class);
 Route::resource('jobs', JobController::class);
@@ -21,4 +20,3 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::post('upload', UploadController::class)->name('upload');
-Route::get('token', CsrfController::class)->name('csrf');

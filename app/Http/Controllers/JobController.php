@@ -19,7 +19,7 @@ class JobController extends Controller
         $jobs = sortByDate($jobs);
         $jobs = paginateArray($jobs, 10, path: '/jobs');
 
-        return Inertia::render('jobs/Index', [
+        return Inertia::render('jobs/Home', [
             'jobs' => $jobs,
         ]);
     }
