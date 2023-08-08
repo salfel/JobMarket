@@ -15,7 +15,8 @@ export interface Company {
 	region: string;
 	location: string;
 	owner_id: string;
-	jobs: Job[]
+	jobs: Job[];
+	job_count?: number;
 	created_at: string;
 	updated_at: string
 }

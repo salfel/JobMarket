@@ -3,7 +3,7 @@
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-function paginateArray($items, $perPage = 15, $page = null, $options = [], $path = '/'): LengthAwarePaginator
+function paginateCollection($items, $perPage = 15, $page = null, $options = [], $path = '/'): LengthAwarePaginator
 {
     $page = $page ?: (LengthAwarePaginator::resolveCurrentPage() ?: 1);
     $items = $items instanceof Collection ? $items : Collection::make($items);
@@ -15,7 +15,7 @@ function paginateArray($items, $perPage = 15, $page = null, $options = [], $path
     return $paginator->withQueryString();
 }
 
-function sortByDate(array $array, string $key = 'created_at')
+function sortByDate(array $array, string $key = 'created_at'): array
 {
     usort($array, function ($a, $b) use ($key) {
         $a = $a[$key];

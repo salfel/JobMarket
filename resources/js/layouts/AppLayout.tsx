@@ -5,7 +5,7 @@ export default function AppLayout({ children }) {
 		<div>
 			<Header />
 			<div className="flex flex-col items-center">
-				<div className="pt-3 px-3 max-w-4xl w-full">
+				<div className="py-3 px-3 max-w-4xl w-full">
 					{children}
 				</div>
 			</div>

@@ -1,18 +1,17 @@
-import React, {useState} from "react"
-import type {Company, Pagination} from "@/lib/types";
-import CompanyPreview from "@/components/CompanyPreview";
-import Paginator from "@/components/Paginator";
+import {Job, Pagination} from "@/lib/types";
+import JobPreview from "@/components/JobPreview";
+import {Input} from "@/components/ui/input";
 import ComboBox from "@/components/ComboBox";
-import { regions as _regions } from "@/lib/constants";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { router, usePage } from "@inertiajs/react";
+import {regions as _regions} from "@/lib/constants";
+import {Button} from "@/components/ui/button";
+import React, {useState} from "react";
+import {router} from "@inertiajs/react";
 
 interface Props {
-	companies: Pagination<Company>
+	jobs: Pagination<Job>
 }
 
-export default function Index({ companies }: Props) {
+export default function Index({ jobs }: Props) {
 	const [regions, setRegions] = useState<string[]>(new URL(location.href).searchParams.get('region')?.split(','))
 	const [search, setSearch] = useState(new URL(location.href).searchParams.get('q') ?? '')
 
@@ -20,8 +19,8 @@ export default function Index({ companies }: Props) {
 		const searchParams = new URLSearchParams()
 		if (regions.length > 0) searchParams.set('region', regions.join(','))
 		if (search) searchParams.set('q', search);
-		router.visit('/companies?' + searchParams.toString(), {
-			only: ['companies'],
+		router.visit('/jobs?' + searchParams.toString(), {
+			only: ['jobs'],
 			preserveState: true
 		})
 	}
@@ -33,11 +32,10 @@ export default function Index({ companies }: Props) {
 				<Button onClick={handleSearch}>Search</Button>
 			</div>
 			<div className="space-y-5">
-				{Array.from(companies.data.values()).map(company => (
-					<CompanyPreview company={company} key={company.id} />
+				{jobs.data.map(job => (
+					<JobPreview job={job} key={job.id} />
 				))}
 			</div>
-			<Paginator paginator={companies} />
 		</>
 	)
 }

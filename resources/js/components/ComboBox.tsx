@@ -10,13 +10,13 @@ interface Props {
 		value: string;
 		label: string;
 	}[],
-	val?: string[],
+	value?: string[],
 	onChange?: (val: string[]) => void
 }
 
-export default function ComboBox({ items, val = null, onChange }: Props) {
+export default function ComboBox({ items, value = null, onChange }: Props) {
 	const [open, setOpen] = useState(false);
-	const [values, setValues] = useState(val ?? [])
+	const [values, setValues] = useState(value ?? [])
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
 			<PopoverTrigger className="flex justify-between" asChild>

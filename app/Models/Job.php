@@ -31,4 +31,11 @@ class Job extends Model
     {
         return 'jobs_index';
     }
+
+    public function toSearchableArray(): array
+    {
+        return [
+            'id' => $this->id,
+        ];
+    }
 }

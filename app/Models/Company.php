@@ -39,4 +39,16 @@ class Company extends Model
     {
         return 'companies_index';
     }
+
+    public function toSearchableArray(): array
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'description' => $this->description,
+            'location' => $this->location,
+            'logo' => $this->logo,
+            'job_count' => $this->jobs()->count(),
+        ];
+    }
 }

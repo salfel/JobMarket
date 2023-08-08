@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CompanyRequest;
 use App\Models\Company;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -13,12 +14,17 @@ class CompanyController extends Controller
 {
     public function index(Request $request)
     {
-        $companies = Company::search($request->get('q'))->take(1000)->get()->toArray();
-        $regions = explode(',', strtolower($request->get('region')) ?: '');
-        empty($regions[0]) && $regions = [];
-        $companies = array_filter($companies,
-            fn ($company) => count($regions) === 0 || in_array(strtolower($company['region']), $regions));
-        $companies = paginateArray($companies, 10, path: '/companies');
+        $region = $request->get('region');
+        $regions = empty($region) ? [] : explode(',', strtolower($region) ?: '');
+
+        $comps = Company::search($request->get('q'))->take(100)->raw()['hits'];
+        $companies = Collection::make([]);
+        foreach ($comps as $company) {
+            unset($company['objectID'], $company['_highlightResult']);
+            $companies->push($company);
+        }
+        $companies = $companies->filter(fn ($company) => count($regions) === 0 || in_array(strtolower($company['region']), $regions));
+        $companies = paginateCollection($companies, 10, path: '/companies');
 
         return Inertia::render('companies/Index', [
             'companies' => fn () => $companies,

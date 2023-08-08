@@ -11,15 +11,15 @@ class JobController extends Controller
 {
     public function index(Request $request)
     {
-        $jobs = Job::search($request->get('q'))->take(500)->get()->toArray();
-        $jobs = array_filter($jobs,
-            fn ($job) => str_contains(strtolower($job['region']),
-                strtolower($request->get('region') ?: '')));
+        $region = $request->get('region');
+        $regions = empty($region) ? [] : explode(',', strtolower($region) ?: '');
 
-        $jobs = sortByDate($jobs);
-        $jobs = paginateArray($jobs, 10, path: '/jobs');
+        $jobs = Job::search($request->get('q'))->take(100)->get();
+        $jobs = $jobs->filter(fn ($company) => count($regions) === 0 || in_array(strtolower($company['region']), $regions));
+        $jobs = sortByDate($jobs->toArray());
+        $jobs = paginateCollection($jobs, 10, path: '/companies');
 
-        return Inertia::render('jobs/Home', [
+        return Inertia::render('jobs/Index', [
             'jobs' => $jobs,
         ]);
     }
