@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\JobRequest;
 use App\Models\Job;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -11,16 +12,24 @@ class JobController extends Controller
 {
     public function index(Request $request)
     {
+        $search = $request->get('q');
         $region = $request->get('region');
         $regions = empty($region) ? [] : explode(',', strtolower($region) ?: '');
 
-        $jobs = Job::search($request->get('q'))->take(100)->get();
-        $jobs = $jobs->filter(fn ($company) => count($regions) === 0 || in_array(strtolower($company['region']), $regions));
-        $jobs = sortByDate($jobs->toArray());
-        $jobs = paginateCollection($jobs, 10, path: '/companies');
+        if ($search) {
+            $jobs = Job::search($request->get('q'))->take(10)->query(function (Builder $query) use ($regions) {
+                $query = $query->latest();
+                count($regions) !== 0 && $query = $query->whereIn('region', $regions);
+
+                return $query;
+            });
+        } else {
+            $jobs = Job::latest();
+            count($regions) !== 0 && $jobs = $jobs->whereIn('region', $regions);
+        }
 
         return Inertia::render('jobs/Index', [
-            'jobs' => $jobs,
+            'jobs' => $jobs->paginate(10)->withQueryString()->appends('query', null),
         ]);
     }
 

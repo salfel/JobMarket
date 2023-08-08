@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CompanyRequest;
 use App\Models\Company;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -14,20 +14,24 @@ class CompanyController extends Controller
 {
     public function index(Request $request)
     {
+        $search = $request->get('q');
         $region = $request->get('region');
         $regions = empty($region) ? [] : explode(',', strtolower($region) ?: '');
 
-        $comps = Company::search($request->get('q'))->take(100)->raw()['hits'];
-        $companies = Collection::make([]);
-        foreach ($comps as $company) {
-            unset($company['objectID'], $company['_highlightResult']);
-            $companies->push($company);
+        if ($search) {
+            $companies = Company::search($request->get('q'))->take(Company::count())->query(function (Builder $query) use ($regions) {
+                $query = $query->with('jobs');
+                count($regions) !== 0 && $query = $query->whereIn('region', $regions);
+
+                return $query;
+            });
+        } else {
+            $companies = Company::with('jobs');
+            count($regions) !== 0 && $companies = $companies->whereIn('region', $regions);
         }
-        $companies = $companies->filter(fn ($company) => count($regions) === 0 || in_array(strtolower($company['region']), $regions));
-        $companies = paginateCollection($companies, 10, path: '/companies');
 
         return Inertia::render('companies/Index', [
-            'companies' => fn () => $companies,
+            'companies' => fn () => $companies->paginate(10)->withQueryString()->appends('query', null),
         ]);
     }
 

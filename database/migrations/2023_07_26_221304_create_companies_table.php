@@ -15,7 +15,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('logo');
             $table->string('website');
-            $table->integer('phone');
+            $table->string('phone');
             $table->string('email')->unique();
             $table->string('region');
             $table->string('location');

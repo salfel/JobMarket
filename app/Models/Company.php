@@ -47,8 +47,13 @@ class Company extends Model
             'name' => $this->name,
             'description' => $this->description,
             'location' => $this->location,
-            'logo' => $this->logo,
-            'job_count' => $this->jobs()->count(),
+            'region' => $this->region,
+            'created_at' => $this->created_at,
         ];
+    }
+
+    public function searchable()
+    {
+
     }
 }

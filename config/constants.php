@@ -2,16 +2,16 @@
 
 return [
     'regions' => [
-        'United States',
-        'Canada',
-        'Mexico',
-        'Brazil',
-        'United Kingdom',
-        'France',
-        'Germany',
-        'Italy',
-        'Spain',
-        'Australia',
+        'united states',
+        'france',
+        'japan',
+        'canada',
+        'brazil',
+        'germany',
+        'india',
+        'china',
+        'spain',
+        'italy',
     ],
     'employmentType' => [
         'full-time',

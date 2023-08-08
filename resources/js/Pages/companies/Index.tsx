@@ -18,6 +18,7 @@ export default function Index({ companies }: Props) {
 
 	const handleSearch = () => {
 		const searchParams = new URLSearchParams()
+		console.log(regions)
 		if (regions.length > 0) searchParams.set('region', regions.join(','))
 		if (search) searchParams.set('q', search);
 		router.visit('/companies?' + searchParams.toString(), {
@@ -29,10 +30,10 @@ export default function Index({ companies }: Props) {
 		<>
 			<div className="flex items-center gap-5 mb-5">
 				<Input type="text" role="search" value={search} placeholder="Search..." className="w-52" onChange={e => setSearch(e.currentTarget.value)} />
-				<ComboBox value={regions} onChange={setRegions} items={_regions.map(region => ({ label: region, value: region.toLowerCase()}))} />
+				<ComboBox value={regions} onChange={setRegions} items={_regions.map(region => ({ label: region, value: region }))} />
 				<Button onClick={handleSearch}>Search</Button>
 			</div>
-			<div className="space-y-5">
+			<div className="flex-1 space-y-5">
 				{Array.from(companies.data.values()).map(company => (
 					<CompanyPreview company={company} key={company.id} />
 				))}

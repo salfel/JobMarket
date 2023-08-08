@@ -1,9 +1,10 @@
 import React from "react"
 import type { Job } from '@/lib/types'
-import {Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription} from '@/components/ui/card'
+import {Card, CardContent, CardHeader, CardTitle, CardDescription} from '@/components/ui/card'
 import {ClockIcon, MapPinIcon, StarIcon} from "@heroicons/react/24/outline";
 import {Link} from "@inertiajs/react";
 import route from "ziggy-js";
+import {convertDate} from "@/lib/utils";
 
 interface Props {
 	job: Job
@@ -13,10 +14,11 @@ export default function JobPreview({ job }: Props) {
 	return (
 		<Card>
 			<CardHeader>
-				<CardTitle>
+				<CardTitle className="flex items-center justify-between">
 					<Link href={route('jobs.show', [job.id])}>
 						{job.name}
 					</Link>
+					<span className="font-normal text-base">{convertDate(job.created_at)}</span>
 				</CardTitle>
 				<CardDescription className="line-clamp-2">{job.description}</CardDescription>
 			</CardHeader>

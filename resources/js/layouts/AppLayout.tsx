@@ -2,13 +2,11 @@ import Header from "../components/Header";
 
 export default function AppLayout({ children }) {
 	return (
-		<div>
+		<div className="flex flex-col min-h-screen">
 			<Header />
-			<div className="flex flex-col items-center">
-				<div className="py-3 px-3 max-w-4xl w-full">
+				<div className="flex flex-col mx-auto p-3 max-w-4xl grow">
 					{children}
 				</div>
-			</div>
 		</div>
 	)
 }

@@ -34,7 +34,7 @@ export default function ComboBox({ items, value = null, onChange }: Props) {
 					<CommandEmpty>No Region found</CommandEmpty>
 					<CommandGroup>
 						{items.map(item => (
-							<CommandItem key={item.value} onSelect={currentItem => {
+							<CommandItem className="capitalize" key={item.value} onSelect={currentItem => {
 								let items: string[] = [];
 								const inArray = values.includes(currentItem);
 								setValues(values => {

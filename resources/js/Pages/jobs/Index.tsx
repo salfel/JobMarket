@@ -6,6 +6,7 @@ import {regions as _regions} from "@/lib/constants";
 import {Button} from "@/components/ui/button";
 import React, {useState} from "react";
 import {router} from "@inertiajs/react";
+import Paginator from "@/components/Paginator";
 
 interface Props {
 	jobs: Pagination<Job>
@@ -36,6 +37,7 @@ export default function Index({ jobs }: Props) {
 					<JobPreview job={job} key={job.id} />
 				))}
 			</div>
+			<Paginator paginator={jobs} />
 		</>
 	)
 }
