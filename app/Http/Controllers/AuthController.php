@@ -11,9 +11,14 @@ use Inertia\Inertia;
 
 class AuthController extends Controller
 {
+    public function login()
+    {
+        return Inertia::render('auth/Login');
+    }
+
     public function authenticate(LoginRequest $request)
     {
-        if (Auth::attempt($request->validated())) {
+        if (Auth::attempt($request->only(['email', 'password']), $request->get('remember'))) {
             Session::regenerate();
 
             return to_route('home');
@@ -33,11 +38,6 @@ class AuthController extends Controller
         Auth::login($user);
 
         return to_route('home');
-    }
-
-    public function login()
-    {
-        return Inertia::render('auth/Login');
     }
 
     public function logout()

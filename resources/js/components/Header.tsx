@@ -13,7 +13,7 @@ import {
 	DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import { UserCircleIcon } from '@heroicons/react/24/solid'
-import { Link } from '@inertiajs/react'
+import { Link, usePage } from '@inertiajs/react'
 import route from "ziggy-js";
 
 export default function Header() {
@@ -44,30 +44,38 @@ export default function Header() {
 							</Link>
 						</NavigationMenuLink>
 					</NavigationMenuItem>
-					<NavigationMenuItem>
-						<DropdownMenu>
-							<DropdownMenuTrigger className="flex items-center justify-center">
-								<UserCircleIcon className="w-5 h-5 text-slate-800" />
-							</DropdownMenuTrigger>
-							<DropdownMenuContent>
-								<DropdownMenuItem>
-									<Link className="w-full" href="/dashboard">
-										Dashboard
-									</Link>
-								</DropdownMenuItem>
-								<DropdownMenuItem>
-									<Link className="w-full" href="/settings">
-										Settings
-									</Link>
-								</DropdownMenuItem>
-								<DropdownMenuSeparator />
-								<DropdownMenuItem>
-									<Link href={route('auth.logout')} method="POST" as="button" className="w-full text-red-500 text-start">
-										Logout
-									</Link>
-								</DropdownMenuItem>
-							</DropdownMenuContent>
-						</DropdownMenu>
+					<NavigationMenuItem className={navigationMenuTriggerStyle()} asChild>
+						{usePage().props.user ?
+							(
+								<DropdownMenu>
+									<DropdownMenuTrigger className="flex items-center justify-center">
+										<UserCircleIcon className="w-5 h-5 text-slate-800" />
+									</DropdownMenuTrigger>
+									<DropdownMenuContent>
+										<DropdownMenuItem>
+											<Link className="w-full" href="/dashboard">
+												Dashboard
+											</Link>
+										</DropdownMenuItem>
+										<DropdownMenuItem>
+											<Link className="w-full" href="/settings">
+												Settings
+											</Link>
+										</DropdownMenuItem>
+										<DropdownMenuSeparator />
+										<DropdownMenuItem>
+											<Link href={route('auth.logout')} method="POST" as="button" className="w-full text-red-500 text-start">
+												Logout
+											</Link>
+										</DropdownMenuItem>
+									</DropdownMenuContent>
+								</DropdownMenu>
+							)
+							: (
+								<Link href={route('auth.login')}>Login</Link>
+							)
+						}
+
 					</NavigationMenuItem>
 				</NavigationMenuList>
 			</NavigationMenu>
