@@ -30,7 +30,7 @@ export default function CompanyPreview({ company }: Props) {
 					<CardDescription className="line-clamp-3">{company.description}</CardDescription>
 				</CardHeader>
 				<CardContent className="font-medium">
-					{company.jobs.length} Jobs available
+					{company.jobs_count} Jobs available
 				</CardContent>
 			</div>
 		</Card>

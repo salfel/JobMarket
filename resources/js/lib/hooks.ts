@@ -1,10 +1,9 @@
 import {ChangeEventHandler, useState} from "react";
 
-export function useModel<T>(initial: T) {
-	const [value, setValue] = useState<T>(initial)
+export function useModel<T>(val: T) {
+	const [value, setValue] = useState(val);
 	const handler: ChangeEventHandler<HTMLInputElement> = (e) => {
 		setValue(e.currentTarget.value)
 	}
-	const model = { value, onChange: handler };
-	return [model, setValue];
+	return [value, setValue, handler];
 }

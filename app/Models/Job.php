@@ -36,6 +36,11 @@ class Job extends Model
     {
         return [
             'id' => $this->id,
+            'name' => $this->name,
+            'description' => $this->description,
+            'location' => $this->location,
+            'experience_level' => $this->experience_level,
+            'employment_type' => $this->employment_type,
         ];
     }
 }

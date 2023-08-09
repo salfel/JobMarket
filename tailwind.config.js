@@ -2,8 +2,7 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    './resources/js/**/*.{ts,tsx}',
-    './resources/js/components/**/*.{ts,tsx}',
+    './resources/js/**/*.{ts,tsx,jsx}',
 	],
   theme: {
     container: {

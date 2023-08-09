@@ -20,7 +20,7 @@ class CompanyController extends Controller
 
         if ($search) {
             $companies = Company::search($request->get('q'))->take(Company::count())->query(function (Builder $query) use ($regions) {
-                $query = $query->with('jobs');
+                $query = $query->withCount('jobs');
                 count($regions) !== 0 && $query = $query->whereIn('region', $regions);
 
                 return $query;
