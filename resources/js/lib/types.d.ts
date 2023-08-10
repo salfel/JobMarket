@@ -57,4 +57,4 @@ export interface Alert {
 	message: string;
 }
 
-export type ConditionalArray<T extends boolean> = T extends true ? string : string[]
+export type ConditionalArray<T extends boolean> = T extends true ? string[] : string

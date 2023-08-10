@@ -13,19 +13,20 @@ interface Props<T extends boolean> {
 	}[],
 	value?: ConditionalArray<T>,
 	onChange?: (val: ConditionalArray<T>) => void,
-	single: T
+	multiple: T,
+	name?: string
 }
 
-export default function ComboBox<T extends boolean>({ items, value, onChange, single = false as T }: Props<T>) {
+export default function ComboBox<T extends boolean>({ items, value, onChange, multiple = true as T, name = 'item' }: Props<T>) {
 	const [open, setOpen] = useState(false);
-	const [values, setValues] = useState<ConditionalArray<T>>((single ? '' : []) as ConditionalArray<T>)
+	const [values, setValues] = useState<ConditionalArray<T>>((multiple ? []: '') as ConditionalArray<T>)
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
 			<PopoverTrigger className="flex justify-between" asChild>
 				<Button variant="outline" role="combobox" aria-expanded={open} className="w-52 text-start">
 					{Array.isArray(values) && values.length > 0
-						? `Selected ${values.length} item${values.length === 1 ? '': 's'}`
-						: !single
+						? `Selected ${values.length} ${name}${values.length === 1 ? '': 's'}`
+						: multiple
 							? 'Select Region...'
 							: values ?
 								values
@@ -41,7 +42,7 @@ export default function ComboBox<T extends boolean>({ items, value, onChange, si
 					<CommandGroup>
 						{items.map(item => (
 							<CommandItem className="capitalize" key={item.value} onSelect={currentItem => {
-								if (!Array.isArray(values)) {
+								if (!multiple) {
 									if(values === currentItem) setValues('' as ConditionalArray<T>);
 									else setValues(currentItem as ConditionalArray<T>);
 									setOpen(false)
@@ -64,7 +65,7 @@ export default function ComboBox<T extends boolean>({ items, value, onChange, si
 								{item.label}
 								<CheckIcon className={cn(
 									'ml-auto h-4 w-4',
-									Array.isArray(values) && values.includes(item.value) || values === item.value ? 'opacity-100': 'opacity-0'
+									multiple && values.includes(item.value) || values === item.value ? 'opacity-100': 'opacity-0'
 								)} />
 							</CommandItem>
 						))}

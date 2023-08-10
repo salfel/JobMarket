@@ -30,7 +30,7 @@ export default function Index({ jobs }: Props) {
 		<>
 			<div className="flex items-center gap-5 mb-5">
 				<Input type="text" role="search" onKeyUp={(e) => e.key === "Enter" && handleSearch()} value={search} placeholder="Search..." className="w-52" onChange={e => setSearch(e.currentTarget.value)} />
-				<ComboBox value={regions} onChange={setRegions} items={_regions.map(region => ({ label: region, value: region.toLowerCase()}))} />
+				<ComboBox multiple={true} name="region" value={regions} onChange={setRegions} items={_regions.map(region => ({ label: region, value: region.toLowerCase()}))} />
 				<Button onClick={handleSearch}>Search</Button>
 			</div>
 			<div className="space-y-5">
