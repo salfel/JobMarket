@@ -4,26 +4,32 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 import { Button } from '@/components/ui/button'
 import {cn} from "@/lib/utils";
+import {ConditionalArray} from "@/lib/types";
 
-interface Props {
+interface Props<T extends boolean> {
 	items: {
 		value: string;
 		label: string;
 	}[],
-	value?: string[],
-	onChange?: (val: string[]) => void
+	value?: ConditionalArray<T>,
+	onChange?: (val: ConditionalArray<T>) => void,
+	single: T
 }
 
-export default function ComboBox({ items, value = null, onChange }: Props) {
+export default function ComboBox<T extends boolean>({ items, value, onChange, single = false as T }: Props<T>) {
 	const [open, setOpen] = useState(false);
-	const [values, setValues] = useState(value ?? [])
+	const [values, setValues] = useState<ConditionalArray<T>>((single ? '' : []) as ConditionalArray<T>)
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
 			<PopoverTrigger className="flex justify-between" asChild>
 				<Button variant="outline" role="combobox" aria-expanded={open} className="w-52 text-start">
-					{values.length > 0
+					{Array.isArray(values) && values.length > 0
 						? `Selected ${values.length} item${values.length === 1 ? '': 's'}`
-						: 'Select Region...'
+						: !single
+							? 'Select Region...'
+							: values ?
+								values
+								: 'Select Region...'
 					}
 					<CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
 				</Button>
@@ -35,20 +41,30 @@ export default function ComboBox({ items, value = null, onChange }: Props) {
 					<CommandGroup>
 						{items.map(item => (
 							<CommandItem className="capitalize" key={item.value} onSelect={currentItem => {
-								let items: string[] = [];
-								const inArray = values.includes(currentItem);
-								setValues(values => {
-									inArray ? values.splice(values.indexOf(currentItem), 1): values.push(currentItem);
-									items = values;
-									return values;
-								})
-								setOpen(false)
-								onChange && onChange(items)
+								if (!Array.isArray(values)) {
+									if(values === currentItem) setValues('' as ConditionalArray<T>);
+									else setValues(currentItem as ConditionalArray<T>);
+									setOpen(false)
+									onChange && onChange(currentItem as ConditionalArray<T>)
+								}
+								else {
+									let items: string[] = []
+									const inArray = values.includes(currentItem);
+									setValues((values) => {
+										if (!Array.isArray(values)) return values;
+										inArray ? values.splice(values.indexOf(currentItem), 1): values.push(currentItem);
+										items = values;
+										return values;
+									})
+									setOpen(false)
+									onChange && onChange(items as ConditionalArray<T>)
+								}
+
 							}}>
 								{item.label}
 								<CheckIcon className={cn(
 									'ml-auto h-4 w-4',
-									values.includes(item.value) ? 'opacity-100': 'opacity-0'
+									Array.isArray(values) && values.includes(item.value) || values === item.value ? 'opacity-100': 'opacity-0'
 								)} />
 							</CommandItem>
 						))}

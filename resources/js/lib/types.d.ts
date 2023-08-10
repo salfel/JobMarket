@@ -56,3 +56,5 @@ export interface Alert {
 	type: "success" | "info" | "warn" | "error" | undefined;
 	message: string;
 }
+
+export type ConditionalArray<T extends boolean> = T extends true ? string : string[]

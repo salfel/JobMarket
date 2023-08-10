@@ -53,7 +53,7 @@ export default function Header() {
 									</DropdownMenuTrigger>
 									<DropdownMenuContent>
 										<DropdownMenuItem>
-											<Link className="w-full" href="/dashboard">
+											<Link className="w-full" href={route('dashboard')}>
 												Dashboard
 											</Link>
 										</DropdownMenuItem>

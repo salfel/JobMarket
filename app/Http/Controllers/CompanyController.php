@@ -26,7 +26,7 @@ class CompanyController extends Controller
                 return $query;
             });
         } else {
-            $companies = Company::with('jobs');
+            $companies = Company::withCount('jobs');
             count($regions) !== 0 && $companies = $companies->whereIn('region', $regions);
         }
 
