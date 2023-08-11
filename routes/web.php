@@ -8,7 +8,7 @@ use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 
 Route::inertia('/', 'Home')->name('home');
-Route::get('/dashboard', DashboardController::class)->name('dashboard');
+Route::get('/dashboard', DashboardController::class)->name('dashboard')->middleware('auth');
 
 Route::resource('companies', CompanyController::class);
 Route::resource('jobs', JobController::class);
