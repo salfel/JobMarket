@@ -28,7 +28,7 @@ export default function Login() {
 				<form onSubmit={handleSubmit} className="space-y-4">
 					<div>
 						<Label className="block mb-1" htmlFor="email">Email</Label>
-						<Input value={form.data.email} onChange={e => form.setData('email', e.currentTarget.value)} id="email" placeholder="email@example.com" type="email" autoComplete="email"/>
+						<Input value={form.data.email} onChange={e => form.setData('email', e.currentTarget.value)} id="email" placeholder="email@example.com" type="text" autoComplete="email"/>
 						{form.errors.email && (
 							<span className="block mt-2 text-xs text-red-500">{form.errors.email}</span>
 						)}

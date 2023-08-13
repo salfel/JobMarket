@@ -58,3 +58,5 @@ export interface Alert {
 }
 
 export type ConditionalArray<T extends boolean> = T extends true ? string[] : string
+
+export type KeyTypeSelector<T, K extends keyof T> = T[K]

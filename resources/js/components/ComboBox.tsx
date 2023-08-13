@@ -14,24 +14,26 @@ interface Props<T extends boolean> {
 	value?: ConditionalArray<T>,
 	onChange?: (val: ConditionalArray<T>) => void,
 	multiple: T,
-	name?: string
+	name?: string,
+	id?: string;
+	className?: string
 }
 
-export default function ComboBox<T extends boolean>({ items, value, onChange, multiple = true as T, name = 'item' }: Props<T>) {
+export default function ComboBox<T extends boolean>({ items, value, onChange, multiple = true as T, name = 'item', ...props }: Props<T>) {
 	const [open, setOpen] = useState(false);
 	const [values, setValues] = useState<ConditionalArray<T>>((multiple ? []: '') as ConditionalArray<T>)
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
 			<PopoverTrigger className="flex justify-between" asChild>
-				<Button variant="outline" role="combobox" aria-expanded={open} className="w-52 text-start">
+				<Button {...props} variant="outline" role="combobox" aria-expanded={open} className={cn("w-52 text-start capitalize", props.className)}>
 					{Array.isArray(values) && values.length > 0
 						? `Selected ${values.length} ${name}${values.length === 1 ? '': 's'}`
 						: multiple
-							? 'Select Region...'
+							? `Select ${name}...`
 							: values ?
 								values
-								: 'Select Region...'
-					}
+								: `Select ${name}...`					}
+
 					<CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
 				</Button>
 			</PopoverTrigger>

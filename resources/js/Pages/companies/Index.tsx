@@ -6,7 +6,7 @@ import ComboBox from "@/components/ComboBox";
 import { regions as _regions } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { router, usePage } from "@inertiajs/react";
+import { router, Head } from "@inertiajs/react";
 
 interface Props {
 	companies: Pagination<Company>
@@ -27,6 +27,9 @@ export default function Index({ companies }: Props) {
 	}
 	return (
 		<>
+			<Head>
+				<title></title>
+			</Head>
 			<div className="flex items-center gap-5 mb-5">
 				<Input type="text" role="search" onKeyUp={(e) => e.key === "Enter" && handleSearch()} value={search} placeholder="Search..." className="w-52" onChange={e => setSearch(e.currentTarget.value)} />
 				<ComboBox multiple={true} name="region" value={regions} onChange={setRegions} items={_regions.map(region => ({ label: region, value: region }))}/>

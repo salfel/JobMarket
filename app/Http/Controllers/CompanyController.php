@@ -73,7 +73,7 @@ class CompanyController extends Controller
         if (! Gate::allows('update', $company)) {
             session()->flash('toast', ['type' => 'error', 'message' => 'You are not authorized to edit this company.']);
 
-            return back();
+            return redirect()->back();
         }
 
         return Inertia::render('companies/Edit', [

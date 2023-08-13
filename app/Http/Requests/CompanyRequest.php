@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyRequest extends FormRequest
 {
@@ -13,9 +14,9 @@ class CompanyRequest extends FormRequest
         return [
             'name' => ['required', 'min:3'],
             'description' => ['required', 'min:24'],
-            'logo' => $request->getMethod() != 'PATCH' ? ['required', 'image'] : ['required', 'string'],
+            'logo' => ['required', 'image'],
             'website' => ['required', 'url'],
-            'phone' => ['required', 'string'],
+            'phone' => ['required', 'numeric'],
             'email' => ['required', 'email', 'max:254', 'unique:users,email'],
             'region' => ['required', Rule::in(config('constants.regions'))],
             'location' => ['required', 'min:3'],
