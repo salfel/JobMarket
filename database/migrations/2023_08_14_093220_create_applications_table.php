@@ -8,13 +8,14 @@ return new class extends Migration {
     public function up()
     {
         Schema::create('applications', function (Blueprint $table) {
-            $table->id();
-            $table->string('id');
+            $table->uuid('id');
+            $table->foreignUuid('job_id')->constrained()->onDelete('cascade');
+            $table->foreignUuid('user_id')->constrained()->onDelete('cascade');
             $table->string('name');
             $table->string('residence');
-            $table->string('email');
-            $table->string('phone');
-            $table->text('tet');
+            $table->string('email')->unique();
+            $table->integer('phone');
+            $table->text('text');
             $table->string('files');
             $table->timestamps();
         });

@@ -42,6 +42,7 @@ class JobController extends Controller
 
     public function show(Job $job)
     {
+        $job->load('company');
         return Inertia::render('jobs/Show', [
             'job' => $job,
         ]);

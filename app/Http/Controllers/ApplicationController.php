@@ -5,33 +5,25 @@ namespace App\Http\Controllers;
 use App\Models\Application;
 use Illuminate\Http\Request;
 
-class ApplicationController extends Controller{
-    public function index()
-    {
-        //
-    }
+class ApplicationController extends Controller
+{
+	public function store(Request $request)
+	{
+	}
 
-    public function create()
-    {
-    }
+	public function show(Application $application)
+	{
+	}
 
-    public function store(Request $request)
-    {
-    }
+	public function edit(Application $application)
+	{
+	}
 
-    public function show(Application $application)
-    {
-    }
+	public function update(Request $request, Application $application)
+	{
+	}
 
-    public function edit(Application $application)
-    {
-    }
-
-    public function update(Request $request, Application $application)
-    {
-    }
-
-    public function destroy(Application $application)
-    {
-    }
+	public function destroy(Application $application)
+	{
+	}
 }

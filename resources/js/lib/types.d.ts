@@ -1,10 +1,10 @@
-export interface User {
+export type User = {
 	id: string;
 	name: string;
 	email: string;
 }
 
-export interface Company {
+export type Company = {
 	id: string;
 	name: string;
 	description: string;
@@ -21,7 +21,7 @@ export interface Company {
 	updated_at: string
 }
 
-export interface Job {
+export type Job = {
 	id: string;
 	name: string;
 	description: string;
@@ -34,7 +34,19 @@ export interface Job {
 	updated_at: string
 }
 
-export interface Pagination<T> {
+export type Application = {
+	id?: string;
+	name: string,
+	residence: string,
+	email: string,
+	phone: string,
+	text: string,
+	files: File[],
+	job_id?: string,
+	user_id?: string
+}
+
+export type Pagination<T> = {
 	current_page: number;
 	first_page_url: string;
 	from: number;
@@ -52,7 +64,7 @@ export interface Pagination<T> {
 	data: T[];
 }
 
-export interface Alert {
+export type Alert = {
 	type: "success" | "info" | "warn" | "error" | undefined;
 	message: string;
 }

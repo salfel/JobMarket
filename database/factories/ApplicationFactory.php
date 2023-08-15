@@ -14,11 +14,11 @@ class ApplicationFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'residence' => $this->faker->word(),
+            'residence' => $this->faker->city(),
             'email' => $this->faker->unique()->safeEmail(),
             'phone' => $this->faker->phoneNumber(),
-            'tet' => $this->faker->word(),
-            'files' => $this->faker->word(),
+            'text' => $this->faker->realText(),
+            'files' => $this->faker->filePath(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

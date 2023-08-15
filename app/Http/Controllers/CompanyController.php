@@ -39,7 +39,7 @@ class CompanyController extends Controller
     {
         return Inertia::render('companies/Show', [
             'company' => $company,
-            'jobs' => $company->jobs()->orderBy('created_at', 'desc')->paginate(10),
+            'jobs' => $company->jobs()->latest()->paginate(10),
         ]);
     }
 

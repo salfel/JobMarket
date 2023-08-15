@@ -41,7 +41,7 @@ export default function Login() {
 						)}
 					</div>
 					<div className="flex items-center gap-2">
-						<Checkbox id="remember" checked={form.data.remember} onCheckedChange={e => form.setData('remember', e)} />
+						<Checkbox id="remember" checked={form.data.remember} onCheckedChange={e => form.setData('remember', e as boolean)} />
 						<Label className="text-sm font-normal" htmlFor="remember">Remember me</Label>
 					</div>
 					<Button type="submit" className="w-full">Login</Button>

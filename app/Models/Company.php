@@ -48,7 +48,6 @@ class Company extends Model
             'description' => $this->description,
             'location' => $this->location,
             'region' => $this->region,
-            'created_at' => $this->created_at,
         ];
     }
 

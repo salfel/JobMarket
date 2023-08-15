@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+use App\Models\Application;
 use App\Models\Company;
 use App\Models\Job;
+use App\Policies\ApplicationPolicy;
 use App\Policies\CompanyPolicy;
 use App\Policies\JobPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -20,6 +22,7 @@ class AuthServiceProvider extends ServiceProvider
         //
         Company::class => CompanyPolicy::class,
         Job::class => JobPolicy::class,
+        Application::class => ApplicationPolicy::class,
     ];
 
     /**

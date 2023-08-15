@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DashboardController;
@@ -12,6 +13,7 @@ Route::get('/dashboard', DashboardController::class)->name('dashboard')->middlew
 
 Route::resource('companies', CompanyController::class);
 Route::resource('jobs', JobController::class);
+Route::resource('applications', ApplicationController::class);
 
 Route::prefix('auth')->group(function () {
     Route::get('login', [AuthController::class, 'login'])->name('auth.login');

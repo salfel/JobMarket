@@ -3,19 +3,25 @@ import { Toaster } from "@/components/ui/toaster";
 import { usePage } from "@inertiajs/react";
 import { useToast } from "@/components/ui/use-toast";
 import { useEffect } from "react";
+import { ReactNode } from "react"
 
-export default function AppLayout({ children }) {
+type Props = {
+	children: ReactNode
+}
+
+export default function AppLayout({ children }: Props) {
 	const { toast } = useToast();
 	const props = usePage().props;
 
 	useEffect(() => {
 		// @ts-ignore
 		const alert = props.flash.alert;
+		console.log(alert)
 		if (alert) {
 			const res = toast({
 				title: 'Oops, something went wrong!',
 				description: alert.message,
-				variant: alert.type
+				variant: alert.type === "error" ? 'destructive': 'default'
 			})
 		}
 	}, [props])

@@ -19,7 +19,7 @@ import route from "ziggy-js";
 export default function Header() {
 	return (
 		<header className="sticky top-0 h-16 bg-white flex items-center justify-around">
-			<Link href={route('home')} className="text-2xl font-semibold">JobMarket</Link>
+			<Link href={route('home')} className="text-2xl font-bold">JobMarket</Link>
 
 			<NavigationMenu>
 				<NavigationMenuList>
@@ -64,7 +64,7 @@ export default function Header() {
 										</DropdownMenuItem>
 										<DropdownMenuSeparator />
 										<DropdownMenuItem>
-											<Link href={route('auth.logout')} method="POST" as="button" className="w-full text-red-500 text-start">
+											<Link href={route('auth.logout')} method="post" as="button" className="w-full text-red-500 text-start">
 												Logout
 											</Link>
 										</DropdownMenuItem>

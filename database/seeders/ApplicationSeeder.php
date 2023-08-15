@@ -2,12 +2,22 @@
 
 namespace Database\Seeders;
 
+use App\Models\Application;
+use App\Models\Job;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class ApplicationSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
-        
+        $jobs = Job::all();
+
+        $jobs->each(function($job) {
+            Application::factory()->create([
+                'job_id' => $job->id,
+                'user_id' => User::first()->id
+            ]);
+        });
     }
 }
