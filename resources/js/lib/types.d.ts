@@ -40,7 +40,7 @@ export type Application = {
 	residence: string,
 	email: string,
 	phone: string,
-	text: string,
+	application_letter: string,
 	files: File[],
 	job_id?: string,
 	user_id?: string

@@ -17,7 +17,7 @@ class ApplicationFactory extends Factory
             'residence' => $this->faker->city(),
             'email' => $this->faker->unique()->safeEmail(),
             'phone' => $this->faker->phoneNumber(),
-            'text' => $this->faker->realText(),
+            'application_letter' => $this->faker->realText(),
             'files' => $this->faker->filePath(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),

@@ -16,7 +16,7 @@ class Application extends Model
         'residence',
         'email',
         'phone',
-        'text',
+        'application_resume',
         'files',
         'company_id',
 	    'user_id'

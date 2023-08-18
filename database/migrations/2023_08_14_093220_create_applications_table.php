@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('residence');
             $table->string('email')->unique();
             $table->integer('phone');
-            $table->text('text');
+            $table->text('application_letter');
             $table->string('files');
             $table->timestamps();
         });

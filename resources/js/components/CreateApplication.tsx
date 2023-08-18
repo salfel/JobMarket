@@ -6,8 +6,9 @@ import FormField from "@/components/FormField";
 import {Textarea} from "@/components/ui/textarea";
 import {Button} from "@/components/ui/button";
 import {UploadIcon} from "@radix-ui/react-icons";
-import {useRef} from "react";
+import {FormEvent, useRef} from "react";
 import FileUpload from "@/components/FIleUpload";
+import route from "ziggy-js";
 
 type Props = {
 	job: Job
@@ -18,7 +19,7 @@ export default function CreateApplication({ job }: Props) {
 		name: '',
 		email: '',
 		phone: '',
-		text: '',
+		application_letter: '',
 		residence: '',
 		files: []
 	})
@@ -30,6 +31,12 @@ export default function CreateApplication({ job }: Props) {
 		if (form.errors[name]) form.clearErrors(name);
 	}
 
+	function handleSubmit(e: FormEvent<HTMLFormElement>) {
+		e.preventDefault();
+
+		form.post(route('jobs.applications.store', [job.id]))
+	}
+
 	return (
 		<Card>
 			<CardHeader>
@@ -39,29 +46,36 @@ export default function CreateApplication({ job }: Props) {
 			<div className="flex m-6 mt-0">
 				<Separator />
 			</div>
-			<CardContent className="space-y-5">
-				<FormField name="Name" value={form.data.name} onChange={e => setData('name', e.currentTarget.value)} error={form.errors.name} />
-				<div className="flex flex-wrap gap-5">
-					<FormField className="base-52 grow" value={form.data.email} onChange={e => setData('email', e.currentTarget.value)} error={form.errors.email} name="Email" type="email"  />
-					<FormField className="base-52 grow" value={form.data.phone} onChange={e => setData('phone', e.currentTarget.value)} error={form.errors.phone} name="Phone" type="tel" />
-				</div>
-				<FormField name="Text" error={form.errors.text}>
-					<Textarea value={form.data.text}
-							  onChange={e => setData('text', e.currentTarget.value)}/>
-				</FormField>
+			<CardContent>
+				<form className="space-y-5" onSubmit={handleSubmit}>
+					<FormField name="Name" value={form.data.name} onChange={e => setData('name', e.currentTarget.value)} error={form.errors.name} />
+					<div className="flex flex-wrap gap-5">
+						<FormField className="base-52 grow" value={form.data.email} onChange={e => setData('email', e.currentTarget.value)} error={form.errors.email} name="Email" type="email"  />
+						<FormField className="base-52 grow" value={form.data.phone} onChange={e => setData('phone', e.currentTarget.value)} error={form.errors.phone} name="Phone" type="tel" />
+						<FormField className="base-52 grow" value={form.data.residence} onChange={e => setData('residence', e.currentTarget.value)} error={form.errors.phone} name="Residence" type="application_letter" />
+					</div>
 
-				{/*<FormField name="Files" error={form.errors.files}>*/}
-                {/*    <input id="logo" type="file" ref={fileInput} className="hidden" accept=".pdf, .doxc, .txt"*/}
-                {/*           onChange={() => fileInput.current?.files && setData('files', [...form.data.files, fileInput.current.files[0]])} />*/}
-				{/*	<div className="flex items-center gap-3">*/}
-                {/*        <Button type="button" onClick={() => fileInput.current?.click()}>*/}
-                {/*            <UploadIcon className="mr-2 w-4 h-4"/>*/}
-                {/*            Upload*/}
-                {/*        </Button>*/}
-                {/*        <span className="inline-block flex-1 font-medium text-sm truncate">{form.data.files?.map(file => file.name).join(' ')}</span>*/}
-				{/*	</div>*/}
-				{/*</FormField>*/}
-				<FileUpload />
+					<FormField name="Resume and other" error={form.errors.files}>
+						<input id="logo" type="file" ref={fileInput} className="hidden" accept=".pdf, .doxc, .txt"
+							   onChange={() => fileInput.current?.files && setData('files', [...form.data.files, fileInput.current.files[0]])} />
+						<div className="flex items-center gap-3">
+							<Button type="button" onClick={() => fileInput.current?.click()}>
+								<UploadIcon className="mr-2 w-4 h-4"/>
+								Upload
+							</Button>
+							<div className="inline-flex flex-1 overflow-hidden h-full gap-3">
+								{form.data.files?.map(file => file.name).map(file => (
+									<span className="font-medium application_letter-sm">{file}</span>
+								))}
+							</div>
+						</div>
+					</FormField>
+					<FormField name="Application Letter" error={form.errors.application_letter}>
+						<Textarea value={form.data.application_letter}
+								  onChange={e => setData('application_letter', e.currentTarget.value)}/>
+					</FormField>
+					<Button type="submit" className="w-full">Submit</Button>
+				</form>
 			</CardContent>
 		</Card>
 	)

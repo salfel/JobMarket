@@ -10,17 +10,10 @@ class ApplicationPolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(User $user)
+    public function create(User $user): bool
     {
-
-    }
-
-    public function view(User $user, Application $application)
-    {
-    }
-
-    public function create(User $user)
-    {
+		dd($user);
+		return true;
     }
 
     public function update(User $user, Application $application)
