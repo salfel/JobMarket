@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class CompanyController extends Controller
 {
@@ -36,7 +37,7 @@ class CompanyController extends Controller
         ]);
     }
 
-    public function show(Company $company)
+    public function show(Company $company): Response
     {
         return Inertia::render('companies/Show', [
             'company' => $company,
@@ -58,10 +59,10 @@ class CompanyController extends Controller
         return to_route('companies.show', [$company->id]);
     }
 
-    public function create(Request $request)
+    public function create(): Response
     {
         if (! Gate::allows('create', Company::class)) {
-            $request->session()->flash('alert', ['type' => 'error', 'message' => 'You have to be logged in!']);
+            session()->flash('alert', ['type' => 'error', 'message' => 'You have to be logged in!']);
 
             return redirect()->back();
         }

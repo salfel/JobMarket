@@ -14,7 +14,7 @@ class ApplicationController extends Controller
 	public function store(ApplicationRequest $request, Job $job)
 	{
 		if (! Gate::allows('create', Application::class)) {
-			$request->session()->flash('alert', ['type' => 'error', 'message' => 'You have to be logged in!']);
+			session()->flash('alert', ['type' => 'error', 'message' => 'You have to be logged in!']);
 
 			return redirect()->back();
 		}
