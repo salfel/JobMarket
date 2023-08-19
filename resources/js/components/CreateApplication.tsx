@@ -6,8 +6,7 @@ import FormField from "@/components/FormField";
 import {Textarea} from "@/components/ui/textarea";
 import {Button} from "@/components/ui/button";
 import {UploadIcon} from "@radix-ui/react-icons";
-import {FormEvent, useRef} from "react";
-import FileUpload from "@/components/FIleUpload";
+import {FormEvent, useMemo, useRef} from "react";
 import route from "ziggy-js";
 
 type Props = {
@@ -34,7 +33,17 @@ export default function CreateApplication({ job }: Props) {
 	function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
 
-		form.post(route('jobs.applications.store', [job.id]))
+		form.post(route('jobs.applications.store', [job.id]), {
+			onError() {
+				console.log(form.errors)
+				Object.keys(form.errors).forEach(e => {
+					if (e.startsWith('files')) {
+						// @ts-ignore
+						form.setError('files', form.errors[e])
+					}
+				})
+			}
+		})
 	}
 
 	return (
@@ -52,20 +61,20 @@ export default function CreateApplication({ job }: Props) {
 					<div className="flex flex-wrap gap-5">
 						<FormField className="base-52 grow" value={form.data.email} onChange={e => setData('email', e.currentTarget.value)} error={form.errors.email} name="Email" type="email"  />
 						<FormField className="base-52 grow" value={form.data.phone} onChange={e => setData('phone', e.currentTarget.value)} error={form.errors.phone} name="Phone" type="tel" />
-						<FormField className="base-52 grow" value={form.data.residence} onChange={e => setData('residence', e.currentTarget.value)} error={form.errors.phone} name="Residence" type="application_letter" />
+						<FormField className="base-52 grow" value={form.data.residence} onChange={e => setData('residence', e.currentTarget.value)} error={form.errors.residence} name="Residence" type="application_letter" />
 					</div>
-
+					{/*@ts-ignore*/}
 					<FormField name="Resume and other" error={form.errors.files}>
 						<input id="logo" type="file" ref={fileInput} className="hidden" accept=".pdf, .doxc, .txt"
 							   onChange={() => fileInput.current?.files && setData('files', [...form.data.files, fileInput.current.files[0]])} />
 						<div className="flex items-center gap-3">
-							<Button type="button" onClick={() => fileInput.current?.click()}>
+							<Button type="button" className="px-4 py-3" onClick={() => fileInput.current?.click()}>
 								<UploadIcon className="mr-2 w-4 h-4"/>
 								Upload
 							</Button>
 							<div className="inline-flex flex-1 overflow-hidden h-full gap-3">
 								{form.data.files?.map(file => file.name).map(file => (
-									<span className="font-medium application_letter-sm">{file}</span>
+									<span key={file} className="font-medium application_letter-sm">{file}</span>
 								))}
 							</div>
 						</div>

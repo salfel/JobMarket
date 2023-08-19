@@ -16,10 +16,11 @@ class Application extends Model
         'residence',
         'email',
         'phone',
-        'application_resume',
+        'application_letter',
         'files',
         'company_id',
-	    'user_id'
+	    'user_id',
+	    'job_id'
     ];
 
     public function job(): BelongsTo

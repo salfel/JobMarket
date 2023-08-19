@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('email')->unique();
             $table->integer('phone');
             $table->text('application_letter');
-            $table->string('files');
+            $table->string('files')->nullable();
             $table->timestamps();
         });
     }

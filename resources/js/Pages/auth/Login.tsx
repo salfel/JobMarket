@@ -5,13 +5,26 @@ import { Checkbox } from "@/components/ui/checkbox";
 import {Link, useForm} from "@inertiajs/react";
 import {FormEvent} from "react";
 import route from "ziggy-js";
+import FormField from "@/components/FormField";
+import {KeyTypeSelector, Company} from "@/lib/types";
+
+type Login = {
+	email: string,
+	password: string,
+	remember: boolean
+}
 
 export default function Login() {
-	const form = useForm({
+	const form = useForm<Login>({
 		email: '',
 		password: '',
 		remember: false
 	})
+
+	function setData<K extends keyof Login>(name: K, value: KeyTypeSelector<Login, K>) {
+		form.setData(name, value);
+		if (form.errors[name]) form.clearErrors(name);
+	}
 
 	function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
@@ -26,25 +39,13 @@ export default function Login() {
 					<p className="text-sm text-muted-foreground">Enter your credentials to enter your account</p>
 				</div>
 				<form onSubmit={handleSubmit} className="space-y-4">
-					<div>
-						<Label className="block mb-1" htmlFor="email">Email</Label>
-						<Input value={form.data.email} onChange={e => form.setData('email', e.currentTarget.value)} id="email" placeholder="email@example.com" type="text" autoComplete="email"/>
-						{form.errors.email && (
-							<span className="block mt-2 text-xs text-red-500">{form.errors.email}</span>
-						)}
-					</div>
-					<div>
-						<Label className="block mb-1" htmlFor="password">Password</Label>
-						<Input value={form.data.password} onChange={e => form.setData('password', e.currentTarget.value)} id="password" type="password" placeholder="*****" autoComplete="current-password"/>
-						{form.errors.password && (
-							<span className="block mt-2 text-xs text-red-500">{form.errors.password}</span>
-						)}
-					</div>
+					<FormField name="Email" onChange={e => setData('email', e.currentTarget.value)} error={form.errors.email}/>
+					<FormField name="Password" onChange={e => setData('password', e.currentTarget.value)} error={form.errors.password}/>
 					<div className="flex items-center gap-2">
 						<Checkbox id="remember" checked={form.data.remember} onCheckedChange={e => form.setData('remember', e as boolean)} />
 						<Label className="text-sm font-normal" htmlFor="remember">Remember me</Label>
 					</div>
-					<Button type="submit" className="w-full">Login</Button>
+					<Button type="submit" dusk="submit" className="w-full">Login</Button>
 				</form>
 			</div>
 			<Button variant="ghost" asChild className="absolute top-10 right-10">

@@ -14,12 +14,21 @@ class ApplicationRequest extends FormRequest
             'email' => ['required', 'email', 'max:254'],
             'phone' => ['required', 'numeric', 'min_digits:10'],
             'application_letter' => ['required', 'min:24'],
-            'files.*' => ['file', 'mimes:doxc,pdf,txt'],
+	        'files' => 'required',
+            'files.*' => 'mimes:doxc,pdf,txt'
         ];
     }
 
+    public function messages(): array
+    {
+	    return [
+			'files.required' => 'You have to provide a file',
+            'files.*' => 'File must be of type :values'
+	    ];
+	}
+
     public function authorize(): bool
     {
-		return true;
+        return true;
     }
 }
