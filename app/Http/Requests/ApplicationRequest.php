@@ -17,9 +17,4 @@ class ApplicationRequest extends FormRequest
             'files.*' => ['file', 'mimes:doxc,pdf,txt'],
         ];
     }
-
-    public function authorize(): bool
-    {
-		return true;
-    }
 }

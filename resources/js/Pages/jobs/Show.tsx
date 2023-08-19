@@ -1,10 +1,11 @@
-import {Job} from "@/lib/types";
+import {Job, User} from "@/lib/types";
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
 import {ClockIcon, MapPinIcon, StarIcon} from "@heroicons/react/24/outline";
 import CreateApplication from "@/components/CreateApplication";
 
 type Props = {
-    job: Job
+    job: Job,
+	user: User
 }
 
 export default function Show({ job }: Props) {
@@ -36,6 +37,7 @@ export default function Show({ job }: Props) {
 				</CardFooter>
 			</Card>
 
+			{}
 			<CreateApplication job={job} />
 		</>
     )

@@ -7,7 +7,6 @@ import {Textarea} from "@/components/ui/textarea";
 import {Button} from "@/components/ui/button";
 import {UploadIcon} from "@radix-ui/react-icons";
 import {FormEvent, useRef} from "react";
-import FileUpload from "@/components/FIleUpload";
 import route from "ziggy-js";
 
 type Props = {

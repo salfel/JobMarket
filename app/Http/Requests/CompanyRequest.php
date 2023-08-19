@@ -3,13 +3,11 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Auth;
 
 class CompanyRequest extends FormRequest
 {
-    public function rules(Request $request): array
+    public function rules(): array
     {
         return [
             'name' => ['required', 'min:3'],
