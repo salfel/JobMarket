@@ -21,6 +21,7 @@
     "barryvdh/laravel-debugbar": "^3.8",
     "barryvdh/laravel-ide-helper": "^2.13",
     "fakerphp/faker": "^1.9.1",
+    "laravel/dusk": "^7.9",
     "laravel/pint": "^1.10",
     "laravel/sail": "^1.18",
     "phpunit/phpunit": "^10.1",

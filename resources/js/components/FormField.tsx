@@ -16,7 +16,7 @@ export default function FormField({ error, name, className, children, ...props }
 			<Label className="block mb-1" htmlFor="email">{name}</Label>
 			{children
 				? children
-				: <Input  {...props} />
+				: <Input name={name.toLowerCase()} {...props} />
 			}
 			{error && (
 				<span className="block mt-2 text-xs text-red-500">{error}</span>

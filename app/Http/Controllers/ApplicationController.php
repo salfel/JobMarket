@@ -19,11 +19,13 @@ class ApplicationController extends Controller
 			return redirect()->back();
 		}
 
-		Application::create([
+		$attributes = [
 			...$request->validated(),
+			'job_id' => $job->id,
 			'user_id' => Auth::user()->id,
-			'job_id' => $job->id
-		]);
+		];
+
+		Application::create($attributes);
 
 		return to_route('dashboard');
 	}
