@@ -1,10 +1,17 @@
-export type User = {
+interface Timestamps {
+	created_at: string;
+	updated_at: string;
+}
+
+export interface User implements Timestamps {
 	id: string;
 	name: string;
 	email: string;
+	companies?: Company[],
+	applications?: Application[]
 }
 
-export type Company = {
+export interface Company implements Timestamps {
 	id: string;
 	name: string;
 	description: string;
@@ -17,11 +24,9 @@ export type Company = {
 	owner_id: string;
 	jobs: Job[];
 	jobs_count: number;
-	created_at: string;
-	updated_at: string
 }
 
-export type Job = {
+export interface Job implements Timestampts {
 	id: string;
 	name: string;
 	description: string;
@@ -30,11 +35,9 @@ export type Job = {
 	experience_level: 'beginner' | 'intermediate' | 'expert';
 	location: string;
 	region: string;
-	created_at: string;
-	updated_at: string
 }
 
-export type Application = {
+export interface Application implements Timestampts {
 	id?: string;
 	name: string,
 	residence: string,
@@ -44,9 +47,11 @@ export type Application = {
 	files: File[],
 	job_id?: string,
 	user_id?: string
+	job?: Job,
+	user?: User
 }
 
-export type Pagination<T> = {
+export interface Pagination<T> {
 	current_page: number;
 	first_page_url: string;
 	from: number;

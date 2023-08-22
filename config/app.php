@@ -171,6 +171,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
         ZiggyServiceProvider::class,
+		Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class
     ])->toArray(),
 
     /*

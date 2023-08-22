@@ -64,7 +64,7 @@ export default function CreateApplication({ job }: Props) {
 							</Button>
 							<div className="inline-flex flex-1 overflow-hidden h-full gap-3">
 								{form.data.files?.map(file => file.name).map(file => (
-									<span className="font-medium application_letter-sm">{file}</span>
+									<span key={file} className="font-medium application_letter-sm">{file}</span>
 								))}
 							</div>
 						</div>
