@@ -1,16 +1,12 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import {Application, Job, KeyTypeSelector} from "@/lib/types";
+import { Job, Application, KeyTypeSelector } from "@/lib/types";
 import {Separator} from "@/components/ui/separator";
 import {useForm} from "@inertiajs/react";
 import FormField from "@/components/FormField";
 import {Textarea} from "@/components/ui/textarea";
 import {Button} from "@/components/ui/button";
 import {UploadIcon} from "@radix-ui/react-icons";
-<<<<<<< HEAD
-import {FormEvent, useMemo, useRef} from "react";
-=======
 import {FormEvent, useRef} from "react";
->>>>>>> 31ee60422382f68605a1616ac187d4a181f1307f
 import route from "ziggy-js";
 
 type Props = {
@@ -20,11 +16,11 @@ type Props = {
 export default function CreateApplication({ job }: Props) {
 	const form = useForm<Application>('CreateApplication', {
 		name: '',
+		residence: '',
 		email: '',
 		phone: '',
 		application_letter: '',
-		residence: '',
-		files: []
+		files: [],
 	})
 
 	const fileInput = useRef<HTMLInputElement>(null)

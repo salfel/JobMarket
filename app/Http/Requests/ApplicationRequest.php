@@ -18,7 +18,6 @@ class ApplicationRequest extends FormRequest
             'files.*' => 'mimes:doxc,pdf,txt'
         ];
     }
-<<<<<<< HEAD
 
     public function messages(): array
     {
@@ -32,6 +31,4 @@ class ApplicationRequest extends FormRequest
     {
         return true;
     }
-=======
->>>>>>> 31ee60422382f68605a1616ac187d4a181f1307f
 }

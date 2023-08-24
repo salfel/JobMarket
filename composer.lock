@@ -4,11 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
     "content-hash": "c7ead3152cd42824941e63cd4a8505f3",
-=======
     "content-hash": "1a282306a5c971804b111a178e1463a2",
->>>>>>> 912d47f8b89cb620453d91dba08f3646cf63bfef
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -6692,8 +6689,6 @@
             "time": "2023-06-12T08:44:38+00:00"
         },
         {
-<<<<<<< HEAD
-=======
             "name": "laravel/dusk",
             "version": "v7.9.3",
             "source": {
@@ -6770,7 +6765,6 @@
             "time": "2023-08-03T16:00:26+00:00"
         },
         {
->>>>>>> 912d47f8b89cb620453d91dba08f3646cf63bfef
             "name": "laravel/pint",
             "version": "v1.11.0",
             "source": {
@@ -7138,7 +7132,6 @@
             "time": "2022-02-21T01:04:05+00:00"
         },
         {
-<<<<<<< HEAD
             "name": "phpdocumentor/reflection-common",
             "version": "2.2.0",
             "source": {
@@ -7283,7 +7276,6 @@
                     "PHPStan\\PhpDocParser\\": [
                         "src/"
                     ]
-=======
             "name": "php-webdriver/webdriver",
             "version": "1.14.0",
             "source": {
@@ -7328,21 +7320,18 @@
                 ],
                 "psr-4": {
                     "Facebook\\WebDriver\\": "lib/"
->>>>>>> 912d47f8b89cb620453d91dba08f3646cf63bfef
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
-<<<<<<< HEAD
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
                 "source": "https://github.com/phpstan/phpdoc-parser/tree/1.23.1"
             },
             "time": "2023-08-03T16:32:59+00:00"
-=======
             "description": "A PHP client for Selenium WebDriver. Previously facebook/webdriver.",
             "homepage": "https://github.com/php-webdriver/php-webdriver",
             "keywords": [
@@ -7357,7 +7346,6 @@
                 "source": "https://github.com/php-webdriver/php-webdriver/tree/1.14.0"
             },
             "time": "2023-02-09T12:12:19+00:00"
->>>>>>> 912d47f8b89cb620453d91dba08f3646cf63bfef
         },
         {
             "name": "phpunit/php-code-coverage",

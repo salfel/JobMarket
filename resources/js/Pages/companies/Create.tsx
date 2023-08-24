@@ -9,18 +9,18 @@ import {regions} from "@/lib/constants"
 import {UploadIcon} from "@radix-ui/react-icons"
 import {useRef} from "react"
 import route from "ziggy-js"
-import {KeyTypeSelector} from "@/lib/types"
+import {Company, KeyTypeSelector} from "@/lib/types"
 
-type Company = {
-	name: string,
-	description: string,
-	email: string,
-	phone: string,
-	website: string,
-	location: string,
-	region: string,
-	logo: File | null
-}
+// type Company = {
+// 	name: string,
+// 	description: string,
+// 	email: string,
+// 	phone: string,
+// 	website: string,
+// 	location: string,
+// 	region: string,
+// 	logo: File | null
+// }
 
 export default function Create({}) {
 	const form = useForm<Company>({

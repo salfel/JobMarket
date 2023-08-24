@@ -1,9 +1,10 @@
-interface Timestamps {
-	created_at: string;
-	updated_at: string;
+type Model = {
+	id?: string;
+	created_at?: string;
+	updated_at?: string;
 }
 
-export interface User implements Timestamps {
+export type User = Model & {
 	id: string;
 	name: string;
 	email: string;
@@ -11,8 +12,7 @@ export interface User implements Timestamps {
 	applications?: Application[]
 }
 
-export interface Company implements Timestamps {
-	id: string;
+export type Company = Model & {
 	name: string;
 	description: string;
 	logo: string;
@@ -26,8 +26,7 @@ export interface Company implements Timestamps {
 	jobs_count: number;
 }
 
-export interface Job implements Timestampts {
-	id: string;
+export type Job = Model & {
 	name: string;
 	description: string;
 	company: Company;
@@ -37,8 +36,7 @@ export interface Job implements Timestampts {
 	region: string;
 }
 
-export interface Application implements Timestampts {
-	id?: string;
+export type Application = Model & {
 	name: string,
 	residence: string,
 	email: string,
@@ -48,10 +46,10 @@ export interface Application implements Timestampts {
 	job_id?: string,
 	user_id?: string
 	job?: Job,
-	user?: User
+	user?: User,
 }
 
-export interface Pagination<T> {
+export type Pagination<T> = {
 	current_page: number;
 	first_page_url: string;
 	from: number;
