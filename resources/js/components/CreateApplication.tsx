@@ -15,6 +15,7 @@ type Props = {
 
 export default function CreateApplication({ job }: Props) {
 	const form = useForm<Application>('CreateApplication', {
+		id: '',
 		name: '',
 		residence: '',
 		email: '',
@@ -33,9 +34,8 @@ export default function CreateApplication({ job }: Props) {
 	function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
 
-		form.post(route('jobs.applications.store', [job.id]), {
+		form.post(route('jobs.applications.store', [job.id as string]), {
 			onError() {
-				console.log(form.errors)
 				Object.keys(form.errors).forEach(e => {
 					if (e.startsWith('files')) {
 						// @ts-ignore
@@ -63,25 +63,24 @@ export default function CreateApplication({ job }: Props) {
 						<FormField className="base-52 grow" value={form.data.phone} onChange={e => setData('phone', e.currentTarget.value)} error={form.errors.phone} name="Phone" type="tel" />
 						<FormField className="base-52 grow" value={form.data.residence} onChange={e => setData('residence', e.currentTarget.value)} error={form.errors.residence} name="Residence" type="application_letter" />
 					</div>
-					{/*@ts-ignore*/}
 					<FormField name="Resume and other" error={form.errors.files}>
 						<input id="logo" type="file" ref={fileInput} className="hidden" accept=".pdf, .doxc, .txt"
-							   onChange={() => fileInput.current?.files && setData('files', [...form.data.files, fileInput.current.files[0]])} />
-						<div className="flex items-center gap-3">
-							<Button type="button" className="px-4 py-3" onClick={() => fileInput.current?.click()}>
-								<UploadIcon className="mr-2 w-4 h-4"/>
-								Upload
-							</Button>
-							<div className="inline-flex flex-1 overflow-hidden h-full gap-3">
-								{form.data.files?.map(file => file.name).map(file => (
-									<span key={file} className="font-medium application_letter-sm">{file}</span>
-								))}
-							</div>
+						   onChange={() => fileInput.current?.files && setData('files', [...form.data.files, fileInput.current.files[0]])} />
+					<div className="flex items-center gap-3">
+						<Button type="button" className="px-4 py-3" onClick={() => fileInput.current?.click()}>
+							<UploadIcon className="mr-2 w-4 h-4"/>
+							Upload
+						</Button>
+						<div className="inline-flex flex-1 overflow-hidden h-full gap-3">
+							{form.data.files?.map(file => file.name).map(file => (
+								<span key={file} className="font-medium application_letter-sm">{file}</span>
+							))}
 						</div>
-					</FormField>
-					<FormField name="Application Letter" error={form.errors.application_letter}>
-						<Textarea value={form.data.application_letter}
-								  onChange={e => setData('application_letter', e.currentTarget.value)}/>
+					</div>
+				</FormField>
+				<FormField name="Application Letter" error={form.errors.application_letter}>
+					<Textarea value={form.data.application_letter}
+							  onChange={e => setData('application_letter', e.currentTarget.value)}/>
 					</FormField>
 					<Button type="submit" className="w-full">Submit</Button>
 				</form>
