@@ -14,9 +14,9 @@ class ApplicationSeeder extends Seeder
         $jobs = Job::all();
 
         $jobs->each(function($job) {
-            Application::factory()->create([
+            Application::factory(5)->create([
                 'job_id' => $job->id,
-                'user_id' => User::first()->id
+                'user_id' => User::inRandomOrder()->first()
             ]);
         });
     }

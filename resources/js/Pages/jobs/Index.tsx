@@ -21,7 +21,6 @@ export default function Index({ jobs }: Props) {
 		const searchParams = new URLSearchParams()
 		regions.length > 0 &&  searchParams.set('region', regions.join(','))
 		search && searchParams.set('q', search);
-		console.log(searchParams.toString())
 		router.visit('/jobs?' + searchParams.toString(), {
 			only: ['jobs'],
 			preserveState: true

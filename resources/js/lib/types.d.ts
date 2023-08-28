@@ -1,7 +1,7 @@
 type Model = {
 	id?: string;
-	created_at?: string;
-	updated_at?: string;
+	created_at: string;
+	updated_at: string;
 }
 
 export type User = Model & {
@@ -10,6 +10,7 @@ export type User = Model & {
 	email: string;
 	companies?: Company[],
 	applications?: Application[]
+	role?: string
 }
 
 export type Company = Model & {
@@ -23,6 +24,7 @@ export type Company = Model & {
 	location: string;
 	owner_id: string;
 	jobs: Job[];
+	applications: Application[];
 	jobs_count: number;
 }
 

@@ -19,8 +19,8 @@ class ApplicationFactory extends Factory
             'phone' => $this->faker->phoneNumber(),
             'application_letter' => $this->faker->realText(),
             'files' => $this->faker->filePath(),
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
+			'created_at' => Carbon::now()->subDays(rand(1, 365)),
+			'updated_at' => Carbon::now()->subDays(rand(1, 365)),
         ];
     }
 }

@@ -16,7 +16,6 @@ export default function AppLayout({ children }: Props) {
 	useEffect(() => {
 		// @ts-ignore
 		const alert = props.flash.alert;
-		console.log(alert)
 		if (alert) {
 			const res = toast({
 				title: 'Oops, something went wrong!',

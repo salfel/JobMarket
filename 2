@@ -1,0 +1,54 @@
+import { User, Application, Company } from "@/lib/types"
+import ApplicationPreview from '@/components/ApplicationPreview'
+import { CardHeader, Card  } from "@/components/ui/card"
+
+type Props = {
+	user: User
+}
+
+export default function Dashboard({ user }: Props) {
+	return (
+		<div>
+			{user.applications && (
+				<ApplicationDashboard applications={user.applications} />
+			)}
+			{user.companies && (
+				<CompanyDashboard companies={user.companies} />
+			)}
+		</div>
+	)
+}
+
+function ApplicationDashboard({ applications }: { applications: Application[] }) {
+	return (
+		<div>
+			<span className="block mb-1 text-gra-800 font-medium">Your Applications</span>
+			<div className="max-w-full flex items-center gap-5 pb-3 overflow-auto">
+				{applications?.map(application => (
+					<ApplicationPreview key={application.id} application={application} />
+				))}
+			</div>
+		</div>
+	)
+}
+
+function CompanyPreview({ company }: { company: Company}) {
+	return (
+		<Card>
+			<CardHeader>{company.name}</CardHeader>
+		</Card>
+	)
+}
+
+function CompanyDashboard({ companies }: { companies: Company[] }) {
+	return (
+		<div>
+			<span className="block mb-1 text-gra-800 font-medium">Your Applications</span>
+			<div className="max-w-full flex items-center gap-5 pb-3 overflow-auto">
+				{companies.map(company => (
+					<CompanyPreview company={company} key={company.id}/>
+				))}
+			</div>
+		</div>
+    )
+}

@@ -4,7 +4,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 10.17.1.
+ * Generated for Laravel 10.20.0.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -11323,7 +11323,7 @@
          *
          * @param string|null $key
          * @param mixed $default
-         * @return \Symfony\Component\HttpFoundation\ParameterBag|mixed 
+         * @return \Symfony\Component\HttpFoundation\InputBag|mixed 
          * @static 
          */ 
         public static function json($key = null, $default = null)
@@ -11485,7 +11485,7 @@
                     /**
          * Set the JSON payload for the request.
          *
-         * @param \Symfony\Component\HttpFoundation\ParameterBag $json
+         * @param \Symfony\Component\HttpFoundation\InputBag $json
          * @return \Illuminate\Http\Request 
          * @static 
          */ 
@@ -16926,6 +16926,18 @@
                         return $instance->withKeyResolver($keyResolver);
         }
                     /**
+         * Set the callback that should be used to attempt to resolve missing named routes.
+         *
+         * @param callable $missingNamedRouteResolver
+         * @return \Illuminate\Routing\UrlGenerator 
+         * @static 
+         */ 
+        public static function resolveMissingNamedRoutesUsing($missingNamedRouteResolver)
+        {
+                        /** @var \Illuminate\Routing\UrlGenerator $instance */
+                        return $instance->resolveMissingNamedRoutesUsing($missingNamedRouteResolver);
+        }
+                    /**
          * Get the root controller namespace.
          *
          * @return string 
@@ -18295,6 +18307,20 @@
         {
                         /** @var \Illuminate\Foundation\Vite $instance */
                         return $instance->asset($asset, $buildDirectory);
+        }
+                    /**
+         * Get the content of a given asset.
+         *
+         * @param string $asset
+         * @param string|null $buildDirectory
+         * @return string 
+         * @throws \Exception
+         * @static 
+         */ 
+        public static function content($asset, $buildDirectory = null)
+        {
+                        /** @var \Illuminate\Foundation\Vite $instance */
+                        return $instance->content($asset, $buildDirectory);
         }
                     /**
          * Get a unique hash representing the current manifest, or null if there is no manifest.
@@ -19835,7 +19861,7 @@ namespace  {
             }
              
                 /**
-             * Get the first record matching the attributes or create it.
+             * Get the first record matching the attributes. If the record is not found, create it.
              *
              * @param array $attributes
              * @param array $values
@@ -19846,6 +19872,20 @@ namespace  {
             {
                                 /** @var \Illuminate\Database\Eloquent\Builder $instance */
                                 return $instance->firstOrCreate($attributes, $values);
+            }
+             
+                /**
+             * Attempt to create the record. If a unique constraint violation occurs, attempt to find the matching record.
+             *
+             * @param array $attributes
+             * @param array $values
+             * @return \Illuminate\Database\Eloquent\Model|static 
+             * @static 
+             */ 
+            public static function createOrFirst($attributes = [], $values = [])
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->createOrFirst($attributes, $values);
             }
              
                 /**

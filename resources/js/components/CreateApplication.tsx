@@ -15,7 +15,6 @@ type Props = {
 
 export default function CreateApplication({ job }: Props) {
 	const form = useForm<Application>('CreateApplication', {
-		id: '',
 		name: '',
 		residence: '',
 		email: '',

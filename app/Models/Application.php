@@ -18,7 +18,6 @@ class Application extends Model
         'phone',
         'application_letter',
         'files',
-        'company_id',
 	    'user_id',
 	    'job_id'
     ];

@@ -13,7 +13,7 @@ Route::get('/dashboard', DashboardController::class)->name('dashboard')->middlew
 
 Route::resource('companies', CompanyController::class);
 Route::resource('jobs', JobController::class);
-Route::resource('jobs.applications', ApplicationController::class);
+Route::resource('jobs.applications', ApplicationController::class)->shallow();
 
 Route::prefix('auth')->group(function () {
     Route::get('login', [AuthController::class, 'login'])->name('auth.login');

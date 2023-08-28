@@ -10,7 +10,6 @@ return new class extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('owner_id')->constrained('users')->onDelete('cascade');
             $table->string('name')->unique();
             $table->text('description');
             $table->string('logo');
