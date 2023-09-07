@@ -6,10 +6,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UploadController;
 
 Route::inertia('/', 'Home')->name('home');
 Route::get('/dashboard', DashboardController::class)->name('dashboard')->middleware('auth');
+Route::get('/settings', SettingsController::class)->name('settings')->middleware('auth');
 
 Route::resource('companies', CompanyController::class);
 Route::resource('jobs', JobController::class);

@@ -1,10 +1,10 @@
 import { User, Application, Company, Pagination } from "@/lib/types"
-import { CardHeader, Card  } from "@/components/ui/card"
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Link } from '@inertiajs/react'
+import { Link, usePage } from '@inertiajs/react'
 import { convertDate } from "@/lib/utils"
 import route from "ziggy-js"
 import Paginator from "@/components/Paginator"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 type Props = {
 	company?: Company,
@@ -15,18 +15,27 @@ type Props = {
 export default function Dashboard({ applications, company, user }: Props) {
 	return (
 		<div>
-			{user?.role && (
-				<AdminDashboard applications={applications} company={company as Company} />
-			)}
+			<Tabs defaultValue="applications">
+				<TabsList>
+					<TabsTrigger value="applications" asChild><Link href={route('dashboard')}>Dashboard</Link></TabsTrigger>
+					<TabsTrigger value="settings" asChild><Link href={route('settings')}>Settings</Link></TabsTrigger>
+				</TabsList>
+
+				<TabsContent value="applications">
+					{user?.role && (
+						<ApplicationDashboard applications={applications} />
+					)}
+				</TabsContent>
+			</Tabs>
 		</div>
 	)
 }
 
-function AdminDashboard({ applications, company }: { applications: Pagination<Application>, company: Company }) {
+function ApplicationDashboard({ applications }: { applications: Pagination<Application> }) {
 	return (
 		<>
+			<h2>Recent Applications</h2>
 			<Table>
-				<TableCaption>{company.name}'s recent Applications</TableCaption>
 				<TableHeader>
 					<TableRow>
 						<TableHead>Job</TableHead>
@@ -52,26 +61,5 @@ function AdminDashboard({ applications, company }: { applications: Pagination<Ap
 			</Table>
 			<Paginator paginator={applications} />
 		</>
-	)
-}
-
-function CompanyPreview({ company }: { company: Company}) {
-	return (
-		<Card>
-			<CardHeader>{company.name}</CardHeader>
-		</Card>
-	)
-}
-
-function CompanyDashboard({ companies }: { companies: Company[] }) {
-	return (
-		<div>
-			<span className="block mb-1 text-gra-800 font-medium">Your Applications</span>
-			<div className="max-w-full flex items-center gap-5 pb-3 overflow-auto">
-				{companies.map(company => (
-					<CompanyPreview company={company} key={company.id}/>
-				))}
-			</div>
-		</div>
 	)
 }
